@@ -1,0 +1,99 @@
+/* Footer Styles */
+
+.footer {
+    width: 100%; /* Ensure it spans the entire width */
+    background-color: grey;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0;
+    font-family: 'Montserrat', sans-serif; /* Ensure Montserrat font is used */
+    z-index: 100; /* Ensure the footer appears above other content */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 1rem;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.footer-section p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #009f38;
+}
+
+.footer-social {
+    margin-top: 1rem;
+}
+
+.social-icon {
+    font-size: 2rem;
+    margin: 0 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #009f38;
+}
+
+.footer-bottom {
+    padding: 1rem;
+    border-top: 1px solid #444;
+    margin-top: 1rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .footer-section {
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,116 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.addnotice-page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+/* Ensure the background image covers the area responsively */
+.addnotice-image {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%), 
+    url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/481355857.jpg?k=e6e9868a2316ee1ba49a75fde7fa431987a3f22ac37a83e4d9f74947b65d20f0&o=&hp=1');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.form{
+    margin:8%;
+}
+.blog-form {
+    position: relative;
+    max-width: 600px;
+    margin: 10%;
+    background: white;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #5a5245;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #DA7B29;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d88a00;
+}
+
+@media (max-width: 600px) {
+    .blog-form {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+    .blog-form {
+        padding: 15px;
+    }
+
+}
+
+

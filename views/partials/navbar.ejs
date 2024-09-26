@@ -1,0 +1,59 @@
+<nav class="navbar">
+  <div class="navbar-content">
+    <div class="navbar-content-left">
+      <a class="navbar-link logo" href="#header" data-anchor-link></a>
+
+      <div class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+      </div>
+
+      <ul class="navbar-toggle-content">
+        <li class="navbar-item">
+          <a class="navbar-logo" href="/" data-anchor-link>
+            <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726671437/output-onlinepngtools_nqbzvq.png">
+          </a>
+        </li>
+
+        <li class="navbar-item">
+          <a class="navbar-link <%= (currentPage === 'home') ? 'active' : '' %>" href="/" data-anchor-link>
+            Home
+          </a>
+        </li>
+
+        <!-- Dropdown for 'Things to do' -->
+        <li class="navbar-item dropdown">
+          <a class="navbar-link <%= (currentPage === 'things-to-do') ? 'active' : '' %>" href="#">Things to do</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-link" href="/adventure">Adventure</a></li>
+            <li><a class="dropdown-link" href="nature">Nature</a></li>
+            <li><a class="dropdown-link" href="/culture">Culture</a></li>
+            <li><a class="dropdown-link" href="/wellness">Wellness</a></li>
+          </ul>
+        </li>
+
+        <li class="navbar-item">
+          <a class="navbar-link <%= (currentPage === 'hotel') ? 'active' : '' %>" href="/hotel" data-anchor-link>
+            Accommodations
+          </a>
+        </li>
+
+        <li class="navbar-item">
+          <a class="navbar-link <%= (currentPage === 'blog') ? 'active' : '' %>" href="/blogs" data-anchor-link>
+            Blog
+          </a>
+        </li>
+
+        <li class="navbar-item">
+          <a class="navbar-link <%= (currentPage === 'notice') ? 'active' : '' %>" href="/notices" data-anchor-link>
+            Notice
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-content-right">
+      <a class="navbar-link <%= (currentPage === 'about') ? 'active' : '' %>" href="/about-us">About Us</a>
+    </div>
+  </div>
+</nav>
+

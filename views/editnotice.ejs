@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link your CSS -->
+</head>
+<body>
+
+    <h2>Edit Notice</h2>
+    <form action="/notices/edit/<%= notice._id %>" method="POST">
+        <label for="imageUrl">Image URL:</label>
+        <input type="text" name="imageUrl" id="imageUrl" value="<%= notice.imageUrl %>" required>
+
+        <label for="message">Message:</label>
+        <textarea name="title" id="message" rows="5" required><%= notice.title %></textarea>
+
+        <button type="submit">Update Notice</button>
+    </form>
+
+</body>
+</html>

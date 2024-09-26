@@ -1,0 +1,176 @@
+
+/* adventure */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.adventure-page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+/* Ensure the background image covers the area responsively */
+.adventure-image {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%), 
+    url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/481355857.jpg?k=e6e9868a2316ee1ba49a75fde7fa431987a3f22ac37a83e4d9f74947b65d20f0&o=&hp=1');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.adventure{
+    margin: auto;
+    display: flex;
+    padding: 5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.adventure-section {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    background-color: white;
+    max-width: 700px;
+    border-radius: 10px;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+
+.image-container img {
+    width: 100%;
+    height: 380px;
+    display: block;
+}
+
+.adventure-section .content {
+    padding: 20px;
+    padding: 2%;
+    justify-content: center;
+}
+
+.adventure-section h2 {
+    font-size: 22px;
+    color: #3e5e40;
+    margin: 15px;
+}
+
+.adventure-section p {
+    font-size: 18px;
+    line-height: 1.3;
+    color: #333;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.explore-btn {
+    background-color: #f2a900;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 10%;
+}
+
+.explore-btn:hover {
+    background-color: #d88a00;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Adjust layout for tablets and smaller screens */
+@media (max-width: 768px) {
+    .adventure-page {
+        height: auto;
+        padding: 20px;
+    }
+
+    .adventure-section {
+        max-width: 90%;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
+
+    .adventure-section h2 {
+        font-size: 22px;
+    }
+
+    .adventure-section p {
+        font-size: 14px;
+    }
+
+    .explore-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 480px) {
+    .adventure-section {
+        max-width: 100%;
+        margin: 0 10px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .adventure-section h2 {
+        font-size: 20px;
+    }
+
+    .adventure-section p {
+        font-size: 13px;
+        -webkit-line-clamp: 3; /* Reduce text length for smaller screens */
+    }
+
+    .image-container img {
+        height: auto;
+    }
+
+    .explore-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+.article {
+    font-size: 1rem;
+    position: relative;
+    text-align: justify;
+    color: rgb(2, 71, 2);
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 5% auto;
+    line-height: 1.4;
+    padding: 0 20px; /* Add padding for smaller screens */
+}

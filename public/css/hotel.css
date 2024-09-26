@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hotel-page {
+    position: relative;
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+/* Ensure the background image covers the area responsively */
+.hotel-image {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%), 
+    url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/481355857.jpg?k=e6e9868a2316ee1ba49a75fde7fa431987a3f22ac37a83e4d9f74947b65d20f0&o=&hp=1');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+/* Adjust text and container width for responsiveness */
+.article {
+    font-size: 1rem;
+    position: relative;
+    text-align: justify;
+    color: rgb(2, 71, 2);
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 5% auto;
+    line-height: 1.4;
+    padding: 0 20px; /* Add padding for smaller screens */
+    animation-duration: 0.8s;
+    animation-name: fadeScaleUp;
+    animation-iteration-count: 1; /* Only plays once */
+    animation-timing-function: ease-in-out; /* Smooth easing */
+    animation-fill-mode: forwards; /* Keep final state */
+    opacity: 0; /* Start invisible */
+}
+
+/* Define the fade-in and scale-up keyframes */
+@keyframes fadeScaleUp {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.article h3 {
+    text-align: center;
+}
+
+.key-features {
+    margin: 10px 0;
+}
+
+/* Media Queries for smaller screens */
+
+/* Tablets and large phones */
+@media (max-width: 1024px) {
+    .hotel-page {
+        height: 50vh; /* Reduce height for smaller screens */
+    }
+
+    .article {
+        font-size: 1rem; /* Smaller text size */
+        line-height: 1.5; /* Adjust line height for readability */
+    }
+}
+
+/* Smartphones and small tablets */
+@media (max-width: 768px) {
+    .hotel-page {
+        height: 45vh; /* Further reduce height */
+    }
+
+    .article {
+        font-size: 0.9rem; /* Adjust text size */
+        padding: 0 10px; /* Reduce padding for smaller screens */
+    }
+}
+
+/* Very small devices like older phones */
+@media (max-width: 480px) {
+    .hotel-page {
+        height: 40vh; /* Minimize background height */
+    }
+
+    .article {
+        font-size: 0.85rem; /* Smaller font for tiny devices */
+        line-height: 1.6; /* Increase line height for readability */
+        padding: 0 5px; /* Minimal padding */
+    }
+}
+
+.photo-gallery {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  .photo {
+    text-align: center;
+    margin:0.4%;
+  }
+  .photo img {
+    width: 260px;
+    height: 120px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .photo-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .photo img {
+      max-width: 100%;
+      max-height: 70%;
+    }
+  }

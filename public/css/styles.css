@@ -1,0 +1,1125 @@
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  
+  body{
+    height: 100%;
+  }
+
+
+/* Navbar */
+/* Navbar - Global */
+/* Navbar */
+
+.navbar {
+    position: fixed;  /* Fixed for all pages */
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease; 
+    background-color: rgb(20, 19, 19); /* Default background color */
+    box-shadow: 0 0 13px -3px rgba(0, 0, 0, 0.4); /* Default shadow */
+}
+
+
+/* Special case for the home page when it's not yet scrolled */
+.navbar {
+    position: absolute;
+    background-color: transparent; /* Transparent at the top */
+    box-shadow: none; /* No shadow initially */
+}
+
+.navbar.scrolled {
+    background-color: rgb(20, 19, 19); /* Background when scrolled */
+    box-shadow: 0 0 13px -3px rgba(0, 0, 0, 0.4); /* Add shadow when scrolled */
+}
+
+
+.navbar.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(20, 19, 19); /* Background when navbar becomes fixed */
+    box-shadow: 0 0 13px -3px rgba(0, 0, 0, 0.4); /* Shadow when fixed */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar-item {
+    position: relative;
+  }
+  
+/* Dropdown Menu Styling */
+.navbar-item {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Aligns the dropdown right below the navbar item */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.479);
+    border: 1px solid rgba(145, 141, 141, 0.699);
+    list-style: none;
+    padding: 0;
+    min-width: 120px;
+    z-index: 1000;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dropdown-menu li {
+    margin: 0;
+  }
+  
+  .dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    white-space: nowrap;
+  }
+  
+  .dropdown-link:hover {
+    background-color: #f1f1f1;
+    color: #000;
+  }
+  
+  /* Show the dropdown on hover */
+  .navbar-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }  
+
+
+/* Navbar Content Styling */
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.navbar-content img{
+    width:50px;
+    justify-content: center;
+}
+  
+@media (max-width: 992px) {
+    .navbar-content {
+        background-color: #000000;
+    }
+}
+
+/* Navbar Link Styling */
+.navbar-content-left,
+.navbar-content-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navbar-link {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 3.2;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+}
+
+.navbar-link.active {
+    font-weight: bold;
+    color: #ff6600; /* Example highlight color */
+    border-bottom: 2px solid #ff6600;
+}
+
+.navbar-link:hover {
+    text-decoration: underline;
+    color: beige;
+}
+
+.navbar.active .navbar-link {
+    color: #000;
+}
+
+/* Toggler Styling for Small Screens */
+.navbar-toggler {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 2.875rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.3rem;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+}
+
+@media (max-width: 992px) {
+    .navbar-toggler {
+        display: flex;
+    }
+}
+
+.navbar-toggler:hover {
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.navbar.active .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar-toggler-icon {
+    position: relative;
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: top 0.1s 0.1s, bottom 0.1s 0.1s, transform 0.1s, opacity 0s 0.1s;
+}
+
+/* Responsive adjustments */
+.navbar.active .navbar-toggler-icon {
+    background-color: #000;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    display: block;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background-color: #fff;
+    transition: inherit;
+}
+  
+.navbar-toggler-icon::before {
+    top: -0.625rem;
+}
+  
+.navbar-toggler-icon.open::before {
+    top: 0;
+    transform: rotate(-90deg);
+}
+  
+.navbar-toggler-icon::after {
+    bottom: -0.625rem;
+}
+  
+.navbar-toggler-icon.open::after {
+    bottom: 0;
+    opacity: 0;
+}
+
+.navbar-toggle-content {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Full Page Image Styles */
+.home-page {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+  
+.hero-image {
+    position: absolute;
+    background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%),
+    url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+  
+.hero-content {
+    position:inherit;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgba(72, 122, 72, 0.815);
+}
+  
+.hero-content h1 {
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.quote h4 {
+    font-size: 10vw; /* This makes the font size scale based on the viewport width */
+    justify-content: center;
+    margin-top:14%;
+    text-align: center;
+    color: #fff;
+    font-family: "Sacramento", cursive;
+}
+
+.hero-content-title {
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    padding: 0 0.2rem;
+    font-size: 8rem; /* Initial font size */
+    transition: font-size 0.8s ease-in; /* Smooth transition */
+    opacity: 1; /* Initial opacity */
+}
+
+.hero-content-title.larger {
+    font-size: 12rem; /* Font size when scrolled down */
+    opacity: 1; /* Maintain opacity */
+}
+
+
+
+/* Responsive Design */
+
+/* For medium screens (tablets) */
+@media (max-width: 992px) {
+    .hero-content-title {
+        font-size: 7rem; /* Smaller font size for medium screens */
+    }
+    
+    .hero-content-title.larger {
+        font-size: 9rem; /* Adjust the size when scrolled */
+    }
+
+    .quote h4 {
+        font-size: 6rem; /* Slightly smaller for tablets */
+        margin-top: 24%;
+    }
+}
+
+/* For small screens (phones) */
+@media (max-width: 768px) {
+    .hero-content-title {
+        font-size: 5rem; /* Further smaller font size for small screens */
+    }
+    
+    .hero-content-title.larger {
+        font-size: 7rem; /* Adjust the size when scrolled */
+    }
+
+    .quote h4 {
+        font-size: 4rem; /* Slightly smaller for tablets */
+        margin-top: 38%;
+    }
+}
+
+/* For extra small screens (very small phones) */
+@media (max-width: 480px) {
+    .hero-content-title {
+        font-size: 4rem; /* Smallest font size for very small screens */
+    }
+    
+    .hero-content-title.larger {
+        font-size: 5rem; /* Adjust the size when scrolled */
+    }
+
+    .quote h4 {
+        font-size: 4rem; /* Even smaller for mobile devices */
+        margin-top: 40%; /* Adjust margin for smaller screens */
+    }
+}
+  
+/* Ensure the footer is visible above the image */
+.footer {
+    position: relative;
+    z-index: 1;
+}
+  
+@media (max-width: 992px) {
+    .navbar-toggle-content {
+        visibility: hidden;
+        position: absolute;
+        top: 94px;
+        left: 0;
+        z-index: -1;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        width: 100%;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 10px 12px -8px rgba(0, 0, 0, 0.4);
+        background-color: #a3b1c1;
+    }
+
+    .navbar.active .navbar-toggle-content {
+        visibility: visible;
+        backdrop-filter: blur(0);
+        background-color: #fff;
+    }
+}
+
+/* cards */
+:root{
+    --background-dark: #2d3548;
+    --text-light: rgba(255,255,255,0.6);
+    --text-lighter: rgba(255,255,255,0.9);
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 64px;
+    --width-container: 1200px;
+  }
+  
+  *{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  
+  body{
+    height: 100%;
+  }
+
+  .container h2{
+    font-size: 3.2rem;
+    color:white;
+    background-color: black;
+    font-family: "Sacramento", cursive;
+    font-weight: 600;
+    padding-left: 80px;
+}
+  
+  .hero-section{
+    align-items: flex-start;
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0.8));
+    display: flex;
+    min-height: 100%;
+    justify-content: center;
+    padding: var(--spacing-xxl) var(--spacing-l);
+  }
+  
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: var(--spacing-l);
+    grid-row-gap: var(--spacing-l);
+    max-width: var(--width-container);
+    width: 100%;
+  }
+  
+  @media(min-width: 540px){
+    .card-grid{
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+  
+  @media(min-width: 960px){
+    .card-grid{
+      grid-template-columns: repeat(4, 1fr); 
+    }
+  }
+  
+  .card{
+    list-style: none;
+    position: relative;
+  }
+  
+  .card:before{
+    content: '';
+    display: block;
+    padding-bottom: 150%;
+    width: 100%;
+  }
+  
+  .card__background{
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--spacing-l);
+    bottom: 0;
+    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: center;
+    transform: scale(1) translateZ(0);
+    transition: 
+      filter 200ms linear,
+      transform 200ms linear;
+  }
+  
+  .card:hover .card__background{
+    transform: scale(1.05) translateZ(0);
+  }
+  
+  .card-grid:hover > .card:not(:hover) .card__background{
+    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+  }
+  
+  .card__content{
+    left: 0;
+    padding: var(--spacing-l);
+    position: absolute;
+    top: 0;
+  }
+  
+  .card__category{
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-s);
+    text-transform: uppercase;
+  }
+  
+  .card__heading{
+    color: var(--text-lighter);
+    font-size: 1.9rem;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    word-spacing: 100vw;
+  }
+
+
+ /* orgs information */
+  .staff-section{
+    height:60%;
+    width:100%;
+  }
+  
+  .staff-card{
+    border:solid 2px red;
+    display:block;
+    margin:auto;
+    margin-top: 6em;
+    margin-bottom: 4%;
+    border:2px solid #3e5e40;
+    background-color:rgba(243, 242, 239, 0.452);
+    font-size:17px;
+    border-radius: 8px;
+    box-shadow: 0 6px 10px rgba(211, 255, 244, 0.274); 
+    max-width:1300px;
+    width:90%;
+    min-width:300px;
+    color: #3e5e40;
+  }
+  .staff-picture{
+    position:relative;
+    bottom:5.4em;
+    display:block;
+    height:auto;
+    width:100%;
+    margin:auto;
+    margin-top:1em;
+  }
+  .staff-picture img{
+    display:block;
+    height:5.4em;
+    width:5.4em;
+    max-width:100%;
+    object-fit: cover;
+    border-radius:100%;
+    margin:auto;
+    border:5px solid rgb(107, 102, 93);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4); 
+  }
+  .staff-description{
+    font-family: Arial, sans-serif;
+    margin-top:-7em;
+    padding:20px;
+    width:auto;
+    height:auto;
+    line-height: 1.4em;
+    text-indent: 4em;
+  }
+
+  .info-title{
+      text-align: center;
+      font-size:x-large;
+      font-family: Arial, sans-serif;
+      margin-bottom: 0.5em;
+      color:#3e5e40;
+  }
+
+
+/* Section for places to go */
+.places-map{
+    background-image: url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726887298/Screenshot_2024-09-21_at_8.39.43_am_ejux55.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* Cover ensures the image scales to cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+
+.placestogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.headingsecond{
+    font-size: 3.2rem;
+    background-color: white;
+    color:black;
+    font-family: "Sacramento", cursive;
+    font-weight: 600;
+    padding-left: 80px;
+}
+
+.headingthird{
+    font-size: 3.2rem;
+    background-color: white;
+    color:black;
+    font-family: "Sacramento", cursive;
+    font-weight: 600;
+}
+
+
+/* Container for left and right halves */
+.row {
+    position: relative; /* Set relative to ensure it's above the background mask */
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    padding: 2rem;
+    background: rgba(244, 248, 238, 0.63); /* Semi-transparent background for readability */
+    border-radius: 10px;
+    z-index: 2; /* Ensure content appears above the white mask */
+}
+
+
+/* Styling for the left half (cards) */
+.left-half {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Adds space between cards */
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Styling for the right half (image) */
+.right-half {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-half img {
+    width:100%;
+    border-radius: 10px;
+}
+
+/* Card styles */
+.card-places {
+    max-width: 24%;
+    max-height: 50%;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-basis: 18rem; /* Ensures each card has a fixed width */
+    flex-grow: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.card-places:hover {
+    transform: translateY(-10px); /* Lifts the card slightly */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Increases shadow on hover */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 120px;
+    display: block;
+}
+
+.card-places-body {
+    padding: 1rem;
+    background-color: rgb(245, 244, 239);
+}
+
+.card-text {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .left-half, .right-half {
+        width: 100%;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 80px;
+    }    
+
+    .right-half img {
+        width: 70%; /* Make the image take up full width on smaller screens */
+    }
+
+    .card-places {
+        width: 100%; /* Cards stack and take full width on mobile */
+    }
+    .card-text {
+        font-size: 0.6rem;
+    }
+}
+
+/* Styling for blogs */
+
+.blog-section {
+    padding: 2rem;
+    width: 80%;
+    margin: auto;
+}
+
+
+
+.blog-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.blog-card {
+    background-color: rgb(245, 244, 239);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 1rem;
+}
+
+.blog-content .date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #3e5e40;
+}
+
+.blog-content p {
+    font-size: 1.2rem;
+    color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.read-all {
+    display: block;
+    text-align: right;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.read-all:hover {
+    color:burlywood;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        flex-direction: column;
+    }
+
+    .blog-card {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* chitwan national park */
+
+.cnp {
+    position:relative;
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #3e5e40;
+    padding: 40px 0; /* Add padding to prevent overlap */
+    overflow: hidden;   
+    height:65%;
+}
+
+
+.cnp  h2 {
+    color: #125e19;
+    font-size: 222%;
+    font-weight: bold;
+    margin-top: 0
+  }
+.cnp  img {
+    max-width: 50%;
+    height:400px;
+    overflow: hidden;
+  }
+  .content {
+    background: rgb(245, 244, 239);
+    width: 60%;
+    position: absolute;
+    top: 80px;
+    padding: 60px;
+    line-height: 1.8rem;
+  }
+
+  .content p{
+    margin-top: 2%;
+    font-size: 18px;
+  }
+
+  .content:before {
+    content: "";
+    border: 2px solid #125e19;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
+  .image {
+    width: 46%;
+    float: right;
+
+  }
+
+/* Responsive Styles */
+@media (max-width: 1080px) {
+    .cnp{
+        height: 65%;
+    }
+
+    .content {
+        width: 70%;
+        padding: 30px;
+        margin-top: 20px;
+    }
+
+    .cnp  img{
+        height:250px;
+    }
+
+    .cnp h2 {
+        font-size: 180%;
+    }
+
+    .cnp {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 100%;
+        position: static; /* Remove absolute positioning for smaller screens */
+        padding: 30px;
+        margin-top: 20px;
+    }
+
+    .image {
+        display: none; /* Hide image for devices smaller than 768px */
+    }
+
+    .cnp h2 {
+        font-size: 150%;
+    }
+    .cnp  img{
+        height:200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cnp{
+        height: 60%;
+    }
+    .content {
+        padding: 20px;
+    }
+
+    .cnp {
+        font-size: 16px;
+    }
+
+    .cnp h2 {
+        font-size: 130%;
+    }
+}
+
+
+
+/* details */
+.detail {
+    position:relative;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #3e5e40;
+    padding: 40px 0; /* Add padding to prevent overlap */
+    overflow: hidden;   
+    height:65%;
+}
+
+.detail  h2 {
+    color: #125e19;
+    font-size: 222%;
+    font-weight: bold;
+    margin-top: 0
+  }
+.detail  img {
+    max-width: 50%;
+    height:400px;
+    overflow: hidden;
+  }
+
+  .content-second {
+    background: rgb(245, 244, 239);
+    width: 60%;
+    position: absolute;
+    top: 80px;
+    padding: 60px;
+    line-height: 1.8rem;
+  }
+
+  .content-second p{
+    margin-top: 2%;
+    font-size: 18px;
+  }
+
+  .content-second:before {
+    content: "";
+    border: 2px solid #125e19;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
+
+  .image-second {
+    width: 46%;
+    float: right;
+    
+  }
+
+
+  @media (max-width: 1080px) {
+    .detail{
+        height: 60%;
+    }
+    .content-second {
+        width: 70%;
+        padding: 30px;
+        margin-top: 20px;
+    }
+
+    .detail h2 {
+        font-size: 180%;
+    }
+
+    .detail {
+        font-size: 17px;
+    }
+    .detail  img{
+        height:250px;
+    }
+}
+
+  @media (max-width: 768px) {
+    .content-second {
+        width: 100%;
+        position: static; /* Remove absolute positioning for smaller screens */
+        padding: 30px;
+        margin-top: 20px;
+    }
+
+    .image-second {
+        display: none; /* Hide image for devices smaller than 768px */
+    }
+
+    .detail h2 {
+        font-size: 150%;
+    }
+    .detail  img{
+        height:200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail{
+        height: 80%;
+    }
+    .content-second {
+        padding: 20px;
+    }
+
+    .detail {
+        font-size: 16px;
+    }
+
+    .detail h2 {
+        font-size: 130%;
+    }
+}
+
+/* Styling for notice and news */
+.notice{
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 30%, rgba(128, 128, 128, 1) 100%);
+    margin-bottom: 0;
+    margin-bottom: 0;
+}
+
+.news-updates-section {
+    padding: 2rem;
+    width: 80%;
+    margin: 20px auto;
+    margin-bottom: 0;
+    
+}
+
+.heading {
+    font-size: 3.2rem;
+    font-family: "Sacramento", cursive;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    
+}
+
+.news-item {
+    background-color: rgb(245, 244, 239);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-item img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
+
+.news-info {
+    padding: 10px;
+}
+
+.news-info p {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: black;
+    
+}
+
+
+@media (max-width: 992px) {
+    .heading{
+        font-size: 4rem;
+    }
+    .container h2{
+        font-size: 3rem;
+        padding-left: 60px;
+    }
+    .headingsecond, .headingthird{
+        font-size: 3rem;
+        padding-left: 60px;
+    }
+}
+
+/* For small screens (phones) */
+@media (max-width: 768px) {
+    .heading{
+        font-size: 3rem;
+    }
+    .container h2{
+        font-size: 2rem;
+        padding-left: 30px;
+    }
+    .headingsecond, .headingthird{
+        font-size: 2rem;
+        padding-left: 30px;
+    }
+}
+
+/* For extra small screens (very small phones) */
+@media (max-width: 480px) {
+    .heading{
+        font-size: 3rem;
+    }
+    .container h2{
+        font-size: 2rem;
+        padding-left: 30px;
+    }
+    .headingsecond, .headingthird{
+        font-size: 2rem;
+        padding-left: 30px;
+    }
+}
+
+/* cnp */

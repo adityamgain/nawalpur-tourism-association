@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTA</title>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726634760/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/addblog.css">
+
+
+    <!-- Montserrat Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Include Navbar Partial -->
+    <%- include('partials/navbar') %>
+
+
+        <div class="addblog-page">
+            <div class="addblog-image">
+            <div class="quote">
+                <h4>Read Our Blogs</h4>
+            </div>  
+            </div>
+        </div>
+
+<section class="blog-section">
+    <div class="blog-container">
+        <% blogsdetail.forEach(blog => { %>
+            <div class="blog-card">
+                <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>">
+                <div class="blog-content">
+                    <p class="date">
+                        <%= blog.createdAt ? new Date(blog.createdAt).toLocaleDateString() : 'Date not available' %>
+                    </p>
+                    <h3><%= blog.title %></h3>
+                    <h5><%= blog.author %></h5>
+                    <p><%= blog.content.substring(0, 100) %>...</p> <!-- Shortened content preview -->
+                    
+                    <a href="/blogs/<%= blog._id %>" class="read-more">Read More</a>
+                    <button type="submit" class="delete-button"><a href="/blogs/<%= blog._id %>/edit" class="edit-button">Edit</a></button>
+                    <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form> <!-- Delete Button -->
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</section>
+
+
+    <!-- Include Footer Partial -->
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
