@@ -2,12 +2,11 @@
 
 .footer {
     width: 100%; /* Ensure it spans the entire width */
-    background-color: grey;
+    background-color: black;
     color: #fff;
     padding: 2rem 0;
     text-align: center;
-    margin-top: 0;
-    padding-top: 0;
+    margin:0;
     font-family: 'Montserrat', sans-serif; /* Ensure Montserrat font is used */
     z-index: 100; /* Ensure the footer appears above other content */
 }

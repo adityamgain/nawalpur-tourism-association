@@ -83,6 +83,10 @@ body {
     .adventure-page {
         height: 50vh; /* Reduce height for smaller screens */
     }
+    .quotesecond h4{
+        font-size: 3rem;
+        margin-top: 20%;
+    }    
 
     .article {
         font-size: 1rem; /* Smaller text size */
@@ -96,6 +100,11 @@ body {
         height: 45vh; /* Further reduce height */
     }
 
+    .quotesecond h4{
+        font-size: 3rem;
+        margin-top: 20%;
+    }    
+
     .article {
         font-size: 0.9rem; /* Adjust text size */
         padding: 0 10px; /* Reduce padding for smaller screens */
@@ -107,6 +116,11 @@ body {
     .adventure-page {
         height: 40vh; /* Minimize background height */
     }
+
+    .quotesecond h4{
+        font-size: 2rem;
+        margin-top: 35%;
+    }    
 
     .article {
         font-size: 0.85rem; /* Smaller font for tiny devices */

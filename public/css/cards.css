@@ -4,12 +4,14 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .adventure-page {
     position: relative;
@@ -36,7 +38,6 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
 }
 
 .adventure{
@@ -49,15 +50,11 @@ body {
 }
 
 .adventure-section {
-    font-family: 'Montserrat', sans-serif;
     position: relative;
-    background-color: white;
     max-width: 700px;
-    border-radius: 10px;
     justify-content: space-between;
     overflow: hidden;
 }
-
 
 .image-container img {
     width: 100%;
@@ -86,24 +83,28 @@ body {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.explore-btn {
-    background-color: #f2a900;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
+.adventure-section .intro-quote{
+    font-size: 2rem;
+    font-family: cursive;
     margin-bottom: 10%;
 }
 
+.explore-btn {
+    background-color: #34a05dd8;
+    color: white;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 10%;
+    border-bottom: 3px solid rgb(4, 126, 59);
+}
+
 .explore-btn:hover {
-    background-color: #d88a00;
+    background-color: #1caa23;
 }
 
 /* Media Queries for Responsiveness */
@@ -111,7 +112,7 @@ body {
 /* Adjust layout for tablets and smaller screens */
 @media (max-width: 768px) {
     .adventure-page {
-        height: auto;
+        height: 40%;
         padding: 20px;
     }
 
@@ -122,6 +123,7 @@ body {
     }
 
     .adventure-section h2 {
+        margin-bottom: 15%;
         font-size: 22px;
     }
 
@@ -145,6 +147,7 @@ body {
     }
 
     .adventure-section h2 {
+        margin-bottom: 20%;
         font-size: 20px;
     }
 
@@ -163,14 +166,4 @@ body {
     }
 }
 
-.article {
-    font-size: 1rem;
-    position: relative;
-    text-align: justify;
-    color: rgb(2, 71, 2);
-    font-size: 1.2rem;
-    max-width: 900px;
-    margin: 5% auto;
-    line-height: 1.4;
-    padding: 0 20px; /* Add padding for smaller screens */
-}
+
