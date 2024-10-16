@@ -22,7 +22,7 @@
     top: 0;
     width: 100%;
     z-index: 10;
-    transition: background-color 0.4s ease, box-shadow 0.4s ease; 
+    transition: background-color 0.6s ease, box-shadow 0.6s ease; 
     background-color: rgb(20, 19, 19); /* Default background color */
     box-shadow: 0 0 13px -3px rgba(0, 0, 0, 0.4); /* Default shadow */
 }
@@ -34,7 +34,7 @@
 }
 
 .navbar.scrolled {
-    background-color: rgb(20, 19, 19); /* Background when scrolled */
+    background-color: #1d3020; /* Background when scrolled */
     box-shadow: 0 0 13px -3px rgba(0, 0, 0, 0.4); /* Add shadow when scrolled */
 }
 
@@ -43,7 +43,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgb(20, 19, 19); /* Background when navbar becomes fixed */
+    background-color: #1d3020; /* Background when navbar becomes fixed */
     box-shadow: 0 0 13px -3px rgba(0, 0, 0, 0.4); /* Shadow when fixed */
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
@@ -62,8 +62,7 @@
     position: absolute;
     top: 100%; 
     left: 0;
-    background-color: rgba(0, 0, 0, 0.479);
-    border: 1px solid rgba(145, 141, 141, 0.699);
+    background-color: #1d3020af;
     list-style: none;
     padding: 0;
     min-width: 120px;
@@ -113,7 +112,7 @@
   
 @media (max-width: 992px) {
     .navbar-content {
-        background-color: #000000;
+        background-color: #1d3020;
     }
 }
 
@@ -187,7 +186,7 @@
 }
 
 .navbar.active .navbar-toggler-icon {
-    background-color: #000;
+    background-color: #1d3020;
 }
 
 .navbar-toggler-icon::before,
@@ -240,8 +239,6 @@
   
 .hero-image {
     position: absolute;
-    background-image:  linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%),
-    url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
     top: 0;
     left: 0;
     width: 100%;
@@ -250,7 +247,83 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+
+    /* Animation settings for larger screens */
+    -webkit-animation: changeBackground 30s ease-in-out infinite; /* Safari prefix */
+    animation: changeBackground 30s ease-in-out infinite;
+    transition: background-image 1s ease-in-out;
 }
+
+/* Keyframes for background animation (only applies to larger screens) */
+@-webkit-keyframes changeBackground {
+    0% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+        background-size: 100%;
+        background-position: center;
+    }
+    15% {
+        background-size: 110%;
+        background-position: center;
+    }
+    33% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1727967602/IMG_8907_yyulgd.jpg');
+        background-size: 100%;
+        background-position: center;
+    }
+    48% {
+        background-size: 110%;
+        background-position: center;
+    }
+    66% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726555683/B28I7314-2-2_iamgea.jpg');
+        background-size: 100%;
+        background-position: center;
+    }
+    81% {
+        background-size: 110%;
+        background-position: center;
+    }
+    100% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+        background-size: 100%;
+        background-position: center;
+    }
+}
+
+/* Disable animation on smaller screens (e.g., mobile phones) */
+@media (max-width: 767px) {
+    .hero-image {
+        -webkit-animation: none; /* Disable animation */
+        animation: none; /* Disable animation */
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg'); /* Set one static image */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+/* Disable animation on desktops (if needed) */
+@media (min-width: 768px) and (max-width: 1200px) {
+    .hero-image {
+        -webkit-animation: none; /* Disable animation */
+        animation: none; /* Disable animation */
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg'); /* Set one static image */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
   
 .hero-content {
     position:inherit;
@@ -363,44 +436,55 @@
 
 /* cards */
 
-  .container h2{
+.headingfirst {
     font-size: 3.2rem;
-    color:white;
-    background-color: black;
+    color: white;
+    background-color: #1d3020;
     font-family: "Sacramento", cursive;
     font-weight: 600;
     padding-left: 80px;
 }
-  
-  .hero-section{
+
+.hero-section {
     align-items: flex-start;
-    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0.8));
+    background-image: linear-gradient(to bottom, #1d3020 0%, #1d3020 1%, rgba(255, 255, 255) 100%);
     display: flex;
     min-height: 100%;
     justify-content: center;
     padding: 64px 24px;
-  }
-  
-  .card-grid{
+}
+
+/* Grid for small devices, 1 column */
+.card-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* Default to 1 column */
     grid-column-gap: 24px;
     grid-row-gap: 24px;
     max-width: 1200px;
     width: 100%;
-  }
-  
-  @media(min-width: 540px){
-    .card-grid{
-      grid-template-columns: repeat(2, 1fr); 
+}
+
+/* Medium devices: 2 columns for better display */
+@media (max-width: 960px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
     }
-  }
-  
-  @media(min-width: 960px){
-    .card-grid{
-      grid-template-columns: repeat(4, 1fr); 
+}
+
+/* Small devices: 1 column to ensure readability */
+@media (max-width: 540px) {
+    .card-grid {
+        grid-template-columns: repeat(1, 1fr); /* Single column */
     }
-  }
+}
+
+/* Larger screens (desktop): 4 columns */
+@media (min-width: 961px) {
+    .card-grid {
+        grid-template-columns: repeat(4, 1fr); /* Four columns */
+    }
+}
+
   
   .card{
     list-style: none;
@@ -419,7 +503,7 @@
     background-position: center;
     border-radius: 24px;
     bottom: 0;
-    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    filter: brightness(0.85) saturate(1.2) contrast(0.85);
     left: 0;
     position: absolute;
     right: 0;
@@ -474,8 +558,8 @@
     margin:auto;
     margin-top: 6em;
     margin-bottom: 4%;
-    border:2px solid #3e5e40;
-    background-color:rgba(243, 242, 239, 0.452);
+    border:2px solid #466347;
+    background-color:white;
     font-size:17px;
     border-radius: 8px;
     box-shadow: 0 6px 10px rgba(211, 255, 244, 0.274); 
@@ -489,6 +573,7 @@
     bottom:5.4em;
     display:block;
     height:auto;
+    background-color: white;
     width:100%;
     margin:auto;
     margin-top:1em;
@@ -501,7 +586,7 @@
     object-fit: cover;
     border-radius:100%;
     margin:auto;
-    border:5px solid rgb(107, 102, 93);
+    border:5px solid rgb(119, 129, 101);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4); 
   }
   .staff-description{
@@ -522,6 +607,8 @@
       color:#3e5e40;
   }
 
+
+  /* places card with map */
 .places-map{
     background-image: url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726887298/Screenshot_2024-09-21_at_8.39.43_am_ejux55.png');
     background-repeat: no-repeat;
@@ -583,14 +670,14 @@
 }
 
 .right-half img {
-    width:100%;
+    width:90%;
     border-radius: 10px;
 }
 
 /* Card styles */
 .card-places {
-    max-width: 24%;
-    max-height: 50%;
+    max-width: 30%;
+    max-height: 56%;
     border-radius: 0.25rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -606,20 +693,26 @@
 
 .card-img-top {
     width: 100%;
-    height: 120px;
+    height: 180px;
     display: block;
 }
 
 .card-places-body {
     padding: 1rem;
-    background-color: rgb(245, 244, 239);
+    background-color: rgb(219, 233, 220);
+}
+
+.card-text a{
+    text-decoration: none;
 }
 
 .card-text {
     font-size: 1rem;
-    font-weight: 300;
+    text-decoration: none;
+    font-weight: 500;
     color: #333;
 }
+
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -704,7 +797,7 @@
 
 .read-all {
     display: block;
-    text-align: right;
+    text-align: right !important;
     margin-top: 1rem;
     font-size: 1rem;
     color: rgb(107, 98, 98);
@@ -716,6 +809,7 @@
     color:burlywood;
     text-decoration: underline;
 }
+
 
 @media (max-width: 768px) {
     .blog-container {
@@ -969,7 +1063,7 @@
 
 /* Styling for notice and news */
 .notice{
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 20%, rgb(0, 0, 0) 100%);
+    /* background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 20%, rgb(0, 0, 0) 100%); */
     margin-bottom: 0;
     margin-bottom: 0;
 }
@@ -1028,6 +1122,9 @@
     .heading{
         font-size: 4rem;
     }
+    .headingfirst{
+        font-size: 3rem;
+    }
     .container h2{
         font-size: 3rem;
         padding-left: 60px;
@@ -1043,12 +1140,11 @@
     .heading{
         font-size: 3rem;
     }
-    .container h2{
-        font-size: 2rem;
-        padding-left: 30px;
+    .headingfirst{
+        font-size: 3rem;
     }
     .headingsecond, .headingthird{
-        font-size: 2rem;
+        font-size: 3rem;
         padding-left: 30px;
     }
 }
@@ -1058,13 +1154,77 @@
     .heading{
         font-size: 3rem;
     }
-    .container h2{
-        font-size: 2rem;
-        padding-left: 30px;
+    .headingfirst{
+        font-size: 3rem;
     }
     .headingsecond, .headingthird{
-        font-size: 2rem;
+        font-size: 3rem;
         padding-left: 30px;
     }
 }
 
+/* gallery */
+.gallery {
+    background-color: rgb(219, 233, 220);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+  }
+
+  .gallery h2{
+      text-align: end;
+  }
+.gallery img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 260px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gallery ul {
+    padding: 4px;
+    margin: 0;
+    display: block;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: center;
+    scroll-behavior: smooth;
+  }
+
+  .gallery li {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    width: min(50vw, 350px);
+    display: inline-block;
+    text-align: center;
+    background-color: rgb(179, 197, 180);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    padding-bottom: 1.5rem;
+    box-shadow: -10px 0 30px 0 rgba(#000, 0.25);
+  }
+
+/* Bottom SVG: Rotated 180 degrees */
+.svg-gallery-bottom svg {
+    transform:none;
+    width: 100%;
+    height: auto; /* Ensures responsiveness */
+    display: block; /* Prevents any inline rendering issues */
+    fill: rgb(219, 233, 220);
+}
+
+/* Top SVG: No rotation */
+.svg-gallery-top svg {
+    transform: rotate(180deg); 
+    width: 100%;
+    height: auto; /* Ensures responsiveness */
+    display: block; /* Prevents any inline rendering issues */
+    fill: rgb(219, 233, 220);
+}

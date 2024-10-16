@@ -9,8 +9,8 @@ const methodOverride = require('method-override');
 const Blog = require('./models/blog');
 const Notice = require('./models/notice');
 const Content = require('./models/content');
-
-
+const Hotel = require('./models/hotel');
+const Gallery = require('./models/gallery');
 
 const app = express();
 
@@ -52,12 +52,12 @@ mongoose.connect(uri)
 
 // const upload = multer({ storage: storage });
 
+  app.get('/', async(req, res) => {
+    const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3); // Get latest 3 blogs
+    const latestNotices = await Notice.find().sort({ createdAt: -1 }).limit(6); // Get latest 6 notices
+    res.render('home', { blogs: latestBlogs, notices: latestNotices, currentPage: 'home' });
+});
 
-app.get('/', async(req, res) => {
-    const latestBlogs = await Blog.find().sort({ date: -1 }).limit(3); // Get latest 3 blogs
-    const latestNotices = await Notice.find().sort({ date: -1 }).limit(6); // Get latest 3 blogs
-    res.render('home',{ blogs: latestBlogs, notices:latestNotices, currentPage: 'home' });
-  });
 
 app.get('/about-us', (req, res) => {
   res.render('aboutus',{ currentPage: 'about' });
@@ -97,13 +97,146 @@ app.get('/hotel', (req, res) => {
   res.render('hotel',{ currentPage: 'hotel' });
 }); 
 
+app.get('/hotel/list', async (req, res) => {
+    try {
+        // Fetch all blog posts from the database
+        const hotelslist = await Hotel.find().sort({ name: 1 });
+        res.render('hotellist',{ hotelslist,currentPage: 'hotel' });
+    } catch (err) {
+        console.error('Error fetching blogs:', err);
+        res.status(500).send('Internal Server Error');
+    }
+  });
+
+
+  app.get('/hotel/list/add',async(req,res)=>{
+    res.render('addhotellist',{ currentPage: 'hotel' })
+  });
+
+  app.post('/hotel/list/add', async (req, res) => {
+    try {
+        const { name, website, location } = req.body;
+        // Create a new blog post
+        const newHotel = new Hotel({
+            name,
+            website,
+            location
+        });
+
+        await newHotel.save();
+
+        res.redirect('/hotel/list')
+    } catch (err) {
+        console.error('Error creating blog:', err);
+        res.status(500).json({ error: 'Error creating blog post' });
+    }
+});
+
+app.get('/hotel/list/:id/edit', async (req, res) => {
+    try {
+        const hotel = await Hotel.findById(req.params.id);
+        if (!hotel) {
+            return res.status(404).send('Blog not found');
+        }
+        res.render('edithotellist', { hotel, currentPage: 'hotel' });
+    } catch (err) {
+        console.error('Error fetching blog for edit:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route to handle the update
+app.post('/hotel/list/:id/edit', async (req, res) => {
+    const { name, website, location } = req.body;
+    try {
+        await Hotel.findByIdAndUpdate(req.params.id, { name, website, location }, { new: true });
+        res.redirect('/hotel/list'); // Redirect to the updated blog post
+    } catch (err) {
+        console.error('Error updating blog:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.delete('/hotel/list/delete/:id', async (req, res) => {
+    try {
+        await Hotel.findByIdAndDelete(req.params.id);
+        res.redirect('/hotel/list'); // Redirect to the blogs list after deletion
+    } catch (err) {
+        console.error('Error deleting blog:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.get('/gallery', async (req, res) => {
+    try {
+        const gallerydetail = await Gallery.find(); 
+        res.render('gallery', { gallerydetail,currentPage: 'none'  });
+    } catch (err) {
+        console.error('Error fetching gallery:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.get('/gallery/add',async(req,res)=>{
+    res.render('addphotos',{ currentPage: 'none'})
+  });
+
+  app.post('/gallery/add', async (req, res) => {
+    try {
+        const { Photoby, content, imageUrl, tag } = req.body;
+        // Create a new blog post
+        const newGallery = new Gallery({
+            Photoby,
+            content,
+            imageUrl,
+            tag 
+        });
+        await newGallery.save();
+        res.redirect('/gallery')
+    } catch (err) {
+        console.error('Error creating blog:', err);
+        res.status(500).json({ error: 'Error creating blog post' });
+    }
+});
+
+app.get('/gallery/:id/edit', async (req, res) => {
+    try {
+        const gallery = await Gallery.findById(req.params.id);
+        if (!gallery) {
+            return res.status(404).send('Blog not found');
+        }
+        res.render('editgallery', { gallery, currentPage: 'none'});
+    } catch (err) {
+        console.error('Error fetching gallery for edit:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.post('/gallery/:id/edit', async (req, res) => {
+    const { Photoby, content, tag, imageUrl } = req.body;
+    try {
+        await Gallery.findByIdAndUpdate(req.params.id, { Photoby, content, tag, imageUrl }, { new: true });
+        res.redirect(`/gallery`); // Redirect to the updated blog post
+    } catch (err) {
+        console.error('Error updating gallery data:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route to handle the deletion
+app.delete('/gallery/:id', async (req, res) => {
+    try {
+        await Gallery.findByIdAndDelete(req.params.id);
+        res.redirect('/gallery'); // Redirect to the blogs list after deletion
+    } catch (err) {
+        console.error('Error deleting gallery:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
   app.get('/blogs', async (req, res) => {
     try {
-        // Fetch all blog posts from the database
-        const blogsdetail = await Blog.find(); // This retrieves all blog documents
-
-        // Render the 'blogs' EJS template and pass the blog data
+        const blogsdetail = await Blog.find(); 
         res.render('blogs', { blogsdetail, currentPage: 'blog' });
     } catch (err) {
         console.error('Error fetching blogs:', err);
@@ -112,7 +245,6 @@ app.get('/hotel', (req, res) => {
 });
 
 app.get('/blogs/:id',async(req,res)=>{
-    const id = req.params.id; 
     const data = await Blog.findById(req.params.id);
     res.render('blogDescription',{ data,currentPage: 'blog' })
 })

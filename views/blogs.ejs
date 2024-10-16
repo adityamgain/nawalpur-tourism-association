@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTA</title>
+    <title>Nawalpur Tourism</title>
     <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726634760/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb.png">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -51,7 +51,7 @@
                     <h5><%= blog.author %></h5>
                     <p><%= blog.content.substring(0, 100) %>...</p> <!-- Shortened content preview -->
                     
-                    <a href="/blogs/<%= blog._id %>" class="read-more">Read More</a>
+                    <a href="/blogs/<%= blog._id %>" class="read-all">Read More</a>
                     <button type="submit" class="delete-button"><a href="/blogs/<%= blog._id %>/edit" class="edit-button">Edit</a></button>
                     <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
                         <button type="submit" class="delete-button">Delete</button>

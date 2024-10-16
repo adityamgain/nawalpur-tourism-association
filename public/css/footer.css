@@ -1,12 +1,19 @@
 /* Footer Styles */
+.svg-container svg {
+    transform: rotate(180deg);
+    width: 100%;
+    height: auto; /* Ensures responsiveness */
+    display: block; /* To prevent any inline rendering issues */
+    fill: #1d3020;
+}
 
 .footer {
     width: 100%; /* Ensure it spans the entire width */
-    background-color: black;
-    color: #fff;
-    padding: 2rem 0;
+    background-color: #1d3020;
+    color: rgb(255, 255, 255);
+    padding: 1rem 0;
     text-align: center;
-    margin:0;
+    margin: 0;
     font-family: 'Montserrat', sans-serif; /* Ensure Montserrat font is used */
     z-index: 100; /* Ensure the footer appears above other content */
 }
@@ -15,14 +22,14 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 1300px;
     margin: 0 auto;
 }
 
 .footer-section {
     flex: 1;
-    margin: 0 1rem;
+    margin: 0;
 }
 
 .footer-section h3 {
@@ -48,13 +55,13 @@
 
 .footer-section ul li a {
     text-decoration: none;
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight: 400;
     transition: color 0.3s;
 }
 
 .footer-section ul li a:hover {
-    color: #009f38;
+    color: #ff6600;
 }
 
 .footer-social {
@@ -64,26 +71,39 @@
 .social-icon {
     font-size: 2rem;
     margin: 0 0.5rem;
-    color: #fff;
+    color: rgb(207, 207, 207);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .social-icon:hover {
-    color: #009f38;
+    color: #ff6600;
 }
 
 .footer-bottom {
-    padding: 1rem;
+    padding: 0.5rem;
     border-top: 1px solid #444;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .footer-bottom p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.7rem;
     font-weight: 300;
 }
+
+.footer-bottom a{
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-bottom a:hover{
+    color: #ff6600;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

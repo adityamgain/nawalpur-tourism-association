@@ -134,6 +134,8 @@ button:hover {
     color: #777;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
 }
 
 .blog-content h3 {

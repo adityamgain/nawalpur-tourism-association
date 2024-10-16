@@ -22,7 +22,7 @@ body {
 .hotel-image {
     position: absolute;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%), 
-    url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/481355857.jpg?k=e6e9868a2316ee1ba49a75fde7fa431987a3f22ac37a83e4d9f74947b65d20f0&o=&hp=1');
+    url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1728126604/IMG_8994_xszefd.jpg');
     top: 0;
     left: 0;
     width: 100%;
@@ -122,7 +122,11 @@ body {
   }
   .photo img {
     width: 260px;
-    height: 120px;
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
     border-radius: 8px;
   }
 
@@ -136,3 +140,91 @@ body {
       max-height: 70%;
     }
   }
+
+
+
+  /* hotellist */
+
+  .hotellist {
+    padding:1.5em;
+    margin:5%;
+  }
+  
+  table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  th {
+    text-align: left;
+  }
+    
+  thead {
+    font-weight: bold;
+    color: #fff;
+    background: #73685d;
+  }
+    
+   td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+  }
+    
+   td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+  }
+  
+  a {
+    color: #73685d;
+  }
+    
+   @media all and (max-width: 768px) {
+      
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    th {
+      text-align: right;
+    }
+    
+    table {
+      position: relative; 
+      padding-bottom: 0;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+    
+    thead {
+      float: left;
+      white-space: nowrap;
+    }
+    
+    tbody {
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: relative;
+      white-space: nowrap;
+    }
+    
+    tr {
+      display: inline-block;
+      vertical-align: top;
+    }
+    
+    th {
+      border-bottom: 1px solid #a39485;
+    }
+    
+    td {
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    
+    }
