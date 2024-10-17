@@ -1170,7 +1170,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
+    min-height: 48vh;
   }
 
   .gallery h2{
@@ -1181,11 +1181,10 @@
     width: 100%;
     max-width: 100%;
     max-height: 260px;
-    margin-bottom: 1.5rem;
   }
   
   .gallery ul {
-    padding: 4px;
+    padding: 2px;
     margin: 0;
     display: block;
     width: 100%;
@@ -1193,7 +1192,7 @@
     overflow-x: auto;
     white-space: nowrap;
     text-align: center;
-    scroll-behavior: smooth;
+    scroll-behavior:smooth;
   }
 
   .gallery li {
@@ -1202,13 +1201,6 @@
     left: 0;
     width: min(50vw, 350px);
     display: inline-block;
-    text-align: center;
-    background-color: rgb(179, 197, 180);
-    font-size: 1rem;
-    font-weight: 500;
-    color: #333;
-    padding-bottom: 1.5rem;
-    box-shadow: -10px 0 30px 0 rgba(#000, 0.25);
   }
 
 /* Bottom SVG: Rotated 180 degrees */

@@ -44,7 +44,7 @@
     <div class="gallery-container">
         <% gallerydetail.forEach(photo => { %>
             <div class="gallery-item">
-                <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>">
+                <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>" onclick="openImage('<%= photo.imageUrl %>')">
                 <p><%= photo.content %></p>
                 <button type="submit" class="delete-button"><a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a></button>
                 <form action="/gallery/<%= photo._id %>?_method=DELETE" method="POST" style="display:inline;">
@@ -55,11 +55,16 @@
     </div>
 </div>
 
-
+<!-- Full Page Image Modal -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeImage()">&times;</span>
+    <img class="modal-content" id="fullImage">
+</div>
 
     <!-- Include Footer Partial -->
     <%- include('partials/footer') %>
 
-    <script src="/js/script.js"></script>
+<script src="/js/gallery.js"></script>
+
 </body>
 </html>
