@@ -248,77 +248,101 @@
     background-repeat: no-repeat;
     z-index: -1;
 
-    /* Animation settings for larger screens */
+    /* Animation settings */
     -webkit-animation: changeBackground 30s ease-in-out infinite; /* Safari prefix */
     animation: changeBackground 30s ease-in-out infinite;
-    transition: background-image 1s ease-in-out;
+    -webkit-transition: background-image 1s ease-in-out, transform 1s ease-in-out; /* Added transition for scale */
+    transition: background-image 1s ease-in-out, transform 1s ease-in-out;
 }
 
-/* Keyframes for background animation (only applies to larger screens) */
+/* Keyframes for background animation */
 @-webkit-keyframes changeBackground {
     0% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
             url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
-        background-size: 100%;
-        background-position: center;
+        -webkit-transform: scale(1);
+        transform: scale(1); /* No zoom */
     }
-    15% {
-        background-size: 110%;
-        background-position: center;
+    20% {
+        -webkit-transform: scale(1.1); /* Zoom in */
+        transform: scale(1.1); /* Zoom in */
     }
     33% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
             url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1727967602/IMG_8907_yyulgd.jpg');
-        background-size: 100%;
-        background-position: center;
+        -webkit-transform: scale(1); /* No zoom */
+        transform: scale(1);
     }
-    48% {
-        background-size: 110%;
-        background-position: center;
+    53% {
+        -webkit-transform: scale(1.1); /* Zoom in */
+        transform: scale(1.1); /* Zoom in */
     }
     66% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726555683/B28I7314-2-2_iamgea.jpg');
-        background-size: 100%;
-        background-position: center;
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631987/WhatsApp_Image_2024-09-18_at_9.40.27_AM_j9zoud.jpg');
+        -webkit-transform: scale(1); /* No zoom */
+        transform: scale(1);
     }
-    81% {
-        background-size: 110%;
-        background-position: center;
+    86% {
+        -webkit-transform: scale(1.1); /* Zoom in */
+        transform: scale(1.1); /* Zoom in */
     }
     100% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
             url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
-        background-size: 100%;
-        background-position: center;
+        -webkit-transform: scale(1); /* Reset zoom */
+        transform: scale(1);
     }
 }
 
-/* Disable animation on smaller screens (e.g., mobile phones) */
+@keyframes changeBackground {
+    0% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+        transform: scale(1); /* No zoom */
+    }
+    20% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    33% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1727967602/IMG_8907_yyulgd.jpg');
+        transform: scale(1); /* No zoom */
+    }
+    53% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    66% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631987/WhatsApp_Image_2024-09-18_at_9.40.27_AM_j9zoud.jpg');
+        transform: scale(1); /* No zoom */
+    }
+    86% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    100% {
+        background-image: 
+            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+        transform: scale(1); /* Reset zoom */
+    }
+}
+
+/* Disable animation on smaller screens (mobile phones) */
 @media (max-width: 767px) {
     .hero-image {
         -webkit-animation: none; /* Disable animation */
         animation: none; /* Disable animation */
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg'); /* Set one static image */
-        background-size: cover;
-        background-position: center;
-    }
-}
-
-/* Disable animation on desktops (if needed) */
-@media (min-width: 768px) and (max-width: 1200px) {
-    .hero-image {
-        -webkit-animation: none; /* Disable animation */
-        animation: none; /* Disable animation */
-        background-image: 
-            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg'); /* Set one static image */
+            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg'); /* Static image */
         background-size: cover;
         background-position: center;
     }
@@ -1171,19 +1195,21 @@
     justify-content: center;
     align-items: center;
     min-height: 48vh;
-  }
+}
 
-  .gallery h2{
-      text-align: end;
-  }
+.gallery h2 {
+    text-align: end;
+}
+
 .gallery img {
     display: block;
     width: 100%;
-    max-width: 100%;
-    max-height: 260px;
-  }
-  
-  .gallery ul {
+    height: 260px;  /* Fixed height for uniformity */
+    object-fit: cover;  /* Ensures the image scales to fill the container while maintaining aspect ratio */
+    border-radius: 10px;  /* Optional: adds rounded corners to the images */
+}
+
+.gallery ul {
     padding: 2px;
     margin: 0;
     display: block;
@@ -1192,31 +1218,26 @@
     overflow-x: auto;
     white-space: nowrap;
     text-align: center;
-    scroll-behavior:smooth;
-  }
+    scroll-behavior: smooth;
+}
 
-  .gallery li {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0;
+.gallery li {
     width: min(50vw, 350px);
     display: inline-block;
-  }
+}
 
-/* Bottom SVG: Rotated 180 degrees */
 .svg-gallery-bottom svg {
-    transform:none;
+    transform: none;
     width: 100%;
-    height: auto; /* Ensures responsiveness */
-    display: block; /* Prevents any inline rendering issues */
+    height: auto;  /* Ensures responsiveness */
+    display: block;  /* Prevents any inline rendering issues */
     fill: rgb(219, 233, 220);
 }
 
-/* Top SVG: No rotation */
 .svg-gallery-top svg {
-    transform: rotate(180deg); 
+    transform: rotate(180deg);
     width: 100%;
-    height: auto; /* Ensures responsiveness */
-    display: block; /* Prevents any inline rendering issues */
+    height: auto;
+    display: block;
     fill: rgb(219, 233, 220);
 }

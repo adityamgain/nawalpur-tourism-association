@@ -48,15 +48,14 @@ window.onscroll = function() {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.navbar-link');
+document.addEventListener("DOMContentLoaded", function() {
+    const toggler = document.querySelector('.navbar-toggler');
+    const navbar = document.querySelector('.navbar');
 
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active');
-        }
+    toggler.addEventListener('click', function() {
+      navbar.classList.toggle('active');
+      this.querySelector('.navbar-toggler-icon').classList.toggle('open');
     });
-});
+  });
 
 

@@ -180,14 +180,11 @@ Nawalpur Tourism Association is a representative organization in the hospitatili
 </div>
 <section class="gallery">
     <h2 class="heading">#Gallery</h2>
-<ul>
-  <li> <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631988/WhatsApp_Image_2024-09-18_at_9.36.29_AM_awze83.jpg"/></li>
-  <li> <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631986/WhatsApp_Image_2024-09-18_at_9.39.16_AM_is5p3y.jpg"/></li>
-  <li> <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631986/WhatsApp_Image_2024-09-18_at_9.37.08_AM_bxfvav.jpg"/></li>
-  <li> <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631986/WhatsApp_Image_2024-09-18_at_9.38.51_AM_jqjptj.jpg"/></li>
-  <li> <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726723684/WhatsApp_Image_2024-09-19_at_11.12.38_AM_mxdqqi.jpg"/></li>
-  <li> <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631986/WhatsApp_Image_2024-09-18_at_9.39.16_AM_is5p3y.jpg"/></li>
-</ul>
+    <ul>
+        <% photos.forEach(photo => { %>
+            <li><img src="<%= photo.imageUrl %>" alt="<%= photo.content %>"></li>
+        <% }); %>
+    </ul>
         <a href="/gallery" class="read-all">View All Photos</a>
 </section>
 <div class="svg-gallery-bottom">

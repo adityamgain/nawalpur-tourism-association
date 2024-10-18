@@ -40,13 +40,20 @@
 
 <h4><a href="/gallery/add">Add photos</a></h4>
 
+
 <div class="gallery-section">
     <div class="gallery-container">
-        <% gallerydetail.forEach(photo => { %>
-            <div class="gallery-item">
-                <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>" onclick="openImage('<%= photo.imageUrl %>')">
+        <% gallerydetail.forEach((photo, index) => { %>
+            <div class="gallery-item" 
+                 data-imageurl="<%= photo.imageUrl %>" 
+                 data-content="<%= photo.content %>" 
+                 data-photoby="<%= photo.Photoby %>" 
+                 onclick="openImage(<%= index %>)">
+                <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>">
                 <p><%= photo.content %></p>
-                <button type="submit" class="delete-button"><a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a></button>
+                <button type="submit" class="delete-button">
+                    <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a>
+                </button>
                 <form action="/gallery/<%= photo._id %>?_method=DELETE" method="POST" style="display:inline;">
                     <button type="submit" class="delete-button">Delete</button>
                 </form>
@@ -59,12 +66,15 @@
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeImage()">&times;</span>
     <img class="modal-content" id="fullImage">
+    <div id="imageCaption" class="modal-caption"></div>
+    <div id="photographerName" class="modal-caption photographer"></div>
 </div>
 
     <!-- Include Footer Partial -->
     <%- include('partials/footer') %>
 
 <script src="/js/gallery.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>

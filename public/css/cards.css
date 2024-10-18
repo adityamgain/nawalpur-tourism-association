@@ -108,7 +108,10 @@ body {
 }
 
 .adventure-section h2 {
-    font-size: 22px;
+    font-family: "Lumanosimo", cursive;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 28px;
     color: #3e5e40;
     margin: 15px;
 }
@@ -131,7 +134,7 @@ body {
 }
 
 .explore-btn {
-    background-color: #38533c;
+    background-color: #5fbb4c;
     color: white;
     padding: 12px 30px;
     font-size: 16px;

@@ -11,6 +11,7 @@ const Notice = require('./models/notice');
 const Content = require('./models/content');
 const Hotel = require('./models/hotel');
 const Gallery = require('./models/gallery');
+const Event = require('./models/event');
 
 const app = express();
 
@@ -55,7 +56,8 @@ mongoose.connect(uri)
   app.get('/', async(req, res) => {
     const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3); // Get latest 3 blogs
     const latestNotices = await Notice.find().sort({ createdAt: -1 }).limit(6); // Get latest 6 notices
-    res.render('home', { blogs: latestBlogs, notices: latestNotices, currentPage: 'home' });
+    const galleryphotos = await Gallery.aggregate([{ $sample: { size: 8 } }]);
+    res.render('home', { blogs: latestBlogs, notices: latestNotices,photos:galleryphotos, currentPage: 'home' });
 });
 
 
