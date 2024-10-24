@@ -1,0 +1,162 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.addblog-page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+/* Ensure the background image covers the area responsively */
+.addblog-image {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%), 
+    url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/481355857.jpg?k=e6e9868a2316ee1ba49a75fde7fa431987a3f22ac37a83e4d9f74947b65d20f0&o=&hp=1');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+  
+  .aboutus-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+  }
+  
+  .logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .about-us {
+    padding: 60px;
+    border-radius: 10px;
+  }
+  
+  .about-us p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  
+  .about-us p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .about-us p::first-letter {
+    font-size: 1.5rem;
+    color: #004d40;
+    font-weight: bold;
+  }
+
+  .supported-by {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .supported-by h3 {
+    font-size: 1.8rem;
+    color: #004d40;
+    margin-bottom: 20px;
+  }
+  
+  .support-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .support-logo {
+    max-width: 120px;
+    height: auto;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .about-us h2 {
+      font-size: 2.2rem;
+    }
+  
+    .about-us p {
+      font-size: 1.05rem;
+    }
+  
+    .support-logo {
+      max-width: 100px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 95%;
+    }
+  
+    .about-us h2 {
+      font-size: 2rem;
+    }
+  
+    .about-us p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+  
+    .logo {
+      max-width: 120px;
+    }
+  
+    .support-logo {
+      max-width: 80px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .about-us {
+      padding: 40px;
+    }
+  
+    .about-us h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+  
+    .about-us p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  
+    .logo {
+      max-width: 100px;
+    }
+  
+    .support-logo {
+      max-width: 70px;
+    }
+  }

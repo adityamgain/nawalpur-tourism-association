@@ -17,6 +17,10 @@
 
 
 /* Navbar */
+#navbar {
+    transition: top 0.3s ease-in-out;
+  }
+
 .navbar {
     position: fixed;  /* Fixed for all pages */
     top: 0;
@@ -111,6 +115,9 @@
 }
   
 @media (max-width: 992px) {
+    .navbar-content img {
+        display: none; /* Hide logo in toggler mode */
+    }
     .navbar-content {
         background-color: #1d3020;
     }
@@ -158,6 +165,7 @@
     border-radius: 0.3rem;
     background: transparent;
     cursor: pointer;
+    color: #1d3020;
     transition: border-color 0.3s ease-in-out;
 }
 
@@ -166,6 +174,44 @@
         display: flex;
     }
 }
+
+@media (max-width: 700px) {
+    .navbar-content {
+        padding: 0.75rem 1rem; /* Smaller padding */
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .navbar-content-left,
+    .navbar-content-right {
+        gap: 1rem; /* Adjust the gap between items */
+    }
+
+    .navbar-link {
+        font-size: 0.9rem; /* Smaller font size for links */
+        line-height: 2.5; /* Adjust line height */
+    }
+
+    .navbar-toggler {
+        width: 2.5rem; /* Smaller toggler button */
+        height: 2.5rem;
+    }
+
+    .navbar-toggler-icon {
+        width: 1rem; /* Smaller icon width */
+        height: 1px; /* Thinner bars */
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        top: -0.5rem;
+        bottom: -0.5rem;
+    }
+    
+    .navbar-content img {
+        width: 40px; /* Smaller logo size */
+    }
+}
+
 
 .navbar-toggler:hover {
     border-color: rgba(255, 255, 255, 1);
@@ -571,65 +617,114 @@
 
 
  /* orgs information */
-  .staff-section{
-    height:60%;
-    width:100%;
-  }
-  
-  .staff-card{
-    border:solid 2px red;
-    display:block;
-    margin:auto;
-    margin-top: 6em;
-    margin-bottom: 4%;
-    border:2px solid #466347;
-    background-color:white;
-    font-size:17px;
+ .staff-section {
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.staff-card {
+    display: block;
+    margin: 2em auto;
+    padding: 1rem;
+    border: 2px solid #466347;
+    background-color: white;
+    font-size: 1.2rem; /* Use rem for responsive text scaling */
     border-radius: 8px;
     box-shadow: 0 6px 10px rgba(211, 255, 244, 0.274); 
-    max-width:1300px;
-    width:90%;
-    min-width:300px;
+    max-width: 1300px;
+    text-align: justify;
+    width: 90%;
+    min-width: 300px;
     color: #3e5e40;
-  }
-  .staff-picture{
-    position:relative;
-    bottom:5.4em;
-    display:block;
-    height:auto;
-    background-color: white;
-    width:100%;
-    margin:auto;
-    margin-top:1em;
-  }
-  .staff-picture img{
-    display:block;
-    height:5.4em;
-    width:5.4em;
-    max-width:100%;
-    object-fit: cover;
-    border-radius:100%;
-    margin:auto;
-    border:5px solid rgb(119, 129, 101);
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4); 
-  }
-  .staff-description{
-    font-family: Arial, sans-serif;
-    margin-top:-7em;
-    padding:20px;
-    width:auto;
-    height:auto;
-    line-height: 1.4em;
-    text-indent: 4em;
-  }
+    transition: all 0.3s ease-in-out; /* For a smooth transition on hover or resize */
+}
 
-  .info-title{
-      text-align: center;
-      font-size:x-large;
-      font-family: Arial, sans-serif;
-      margin-bottom: 0.5em;
-      color:#3e5e40;
-  }
+.staff-picture {
+    position: relative;
+    display: block;
+    height: auto;
+    background-color: white;
+    width: 100%;
+    margin: auto;
+    margin-top: 1em;
+    bottom: 3em; /* Adjusted for better responsiveness */
+}
+
+.staff-picture img {
+    display: block;
+    height: 5.4em;
+    width: 5.4em;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+    margin: auto;
+    border: 5px solid rgb(119, 129, 101);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4); 
+}
+
+.staff-description {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    padding: 20px;
+    width: auto;
+    height: auto;
+    line-height: 1.3em; /* Adjusted for better readability */
+    text-indent: 2em; /* Reduced for smaller screens */
+    margin-top: -4em; /* Adjusted for responsiveness */
+}
+
+.info-title {
+    text-align: center;
+    font-size: 1.5rem; /* Use rem for scalable font size */
+    font-family: Arial, sans-serif;
+    margin-bottom: 0.5em;
+    color: #3e5e40;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 768px (tablets and small devices) */
+@media (max-width: 768px) {
+    .staff-card {
+        width: 95%; /* Adjust width for tablets */
+        font-size: 0.9rem; /* Reduce font size for tablets */
+    }
+
+    .staff-picture {
+        bottom: 2em; /* Adjust picture positioning */
+    }
+
+    .staff-description {
+        margin-top: -3em; /* Adjust margin for better spacing */
+        text-indent: 1.5em; /* Reduced text-indent */
+    }
+
+    .info-title {
+        font-size: 1.3rem; /* Slightly smaller title on tablets */
+    }
+}
+
+/* For screens smaller than 480px (mobile devices) */
+@media (max-width: 480px) {
+    .staff-card {
+        width: 100%; /* Full width for mobile */
+        font-size: 0.8rem; /* Smaller font for mobile */
+    }
+
+    .staff-picture {
+        bottom: 1.5em; /* Further adjust the image position */
+    }
+
+    .staff-description {
+        margin-top: -2em; /* Less negative margin for mobile */
+        text-indent: 1em; /* Further reduce text-indent */
+        line-height: 1.5em; /* Adjust line height for readability */
+    }
+
+    .info-title {
+        font-size: 1.1rem; /* Small title for mobile */
+    }
+}
 
 
   /* places card with map */
@@ -645,25 +740,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    text-align: center; /* Ensures alignment on smaller screens */
+}
+
+.headingsecond, .headingthird {
+    font-size: 2.5rem; /* Reduced for better responsiveness */
+    background-color: white;
+    color: black;
+    font-family: "Sacramento", cursive;
+    font-weight: 600;
+    padding: 1rem;
+    margin: 0 auto; /* Center the headings */
 }
 
 .headingsecond{
-    font-size: 3.2rem;
-    background-color: white;
-    color:black;
-    font-family: "Sacramento", cursive;
-    font-weight: 600;
     padding-left: 80px;
 }
 
-.headingthird{
-    font-size: 3.2rem;
-    background-color: white;
-    color:black;
-    font-family: "Sacramento", cursive;
-    font-weight: 600;
-}
 
 .row {
     position: relative; 
@@ -693,9 +786,10 @@
     align-items: center;
 }
 
-.right-half img {
-    width:90%;
-    border-radius: 10px;
+.right-half iframe {
+    width: 90%; /* Responsive width */
+    height: 70%; /* Adjusted height for desktop */
+    border: none;
 }
 
 /* Card styles */
@@ -721,6 +815,11 @@
     display: block;
 }
 
+.card-places img{
+    object-fit: cover; /* Ensures the image fills the area without distortion */
+    overflow: hidden;
+
+}
 .card-places-body {
     padding: 1rem;
     background-color: rgb(219, 233, 220);
@@ -731,37 +830,63 @@
 }
 
 .card-text {
+    font-family: Arial, sans-serif;
+
     font-size: 1rem;
     text-decoration: none;
-    font-weight: 500;
+    font-weight:550;
     color: #333;
 }
 
-
-/* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .row {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-
     .left-half, .right-half {
         width: 100%;
     }
-
-    .card-img-top {
+    .right-half iframe {
+        height: 70%;
         width: 100%;
-        height: 80px;
-    }    
 
-    .right-half img {
-        width: 70%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .headingsecond, .headingthird {
+        font-size: 2rem;
+        padding-left: 0;
     }
 
     .card-places {
-        width: 100%; 
+        max-width: 80%;
     }
-    .card-text {
-        font-size: 0.6rem;
+
+    .placestogo {
+        flex-direction: column;
+    }
+
+    .right-half iframe {
+        height: 50%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .headingsecond, .headingthird {
+        font-size: 1.8rem;
+    }
+
+    .card-places {
+        max-width: 100%;
+    }
+
+    .right-half iframe {
+        height: 50%;
+        width: 100%;
+
     }
 }
 
@@ -868,8 +993,10 @@
 .cnp  img {
     max-width: 50%;
     height:400px;
+    object-fit: cover; /* Ensures the image fills the area without distortion */
     overflow: hidden;
   }
+
   .content {
     background: rgb(245, 244, 239);
     width: 60%;
@@ -878,6 +1005,7 @@
     top: 80px;
     padding: 60px;
     line-height: 1.8rem;
+    text-align: justify;
   }
 
   .content p{
@@ -897,13 +1025,13 @@
   .image {
     width: 46%;
     float: left;
-    margin-left:20%;
+    margin-left:23%;
   }
 
 /* Adjust for screens 1080px and smaller */
 @media (max-width: 1080px) {
     .cnp {
-        height: 75%; 
+        height: 78%; 
     }
 
     .content {
@@ -915,6 +1043,10 @@
     .cnp img {
         height: 250px;
     }
+
+    .image {
+        margin-left:12%;
+      }
 
     .cnp h2 {
         font-size: 180%;
@@ -931,6 +1063,7 @@
         margin-left: 0;
         padding: 30px;
         position: static; 
+
     }
 
     .image {
@@ -944,12 +1077,20 @@
     .cnp img {
         height: 200px;
     }
+    .cnp:before, .cnp:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #125e19;
+        margin: 10px 0;
+    }
 }
 
 /* Adjust for screens 480px and smaller */
 @media (max-width: 480px) {
     .cnp {
-        height: 70%;
+        height: 100%;
     }
 
     .content {
@@ -965,6 +1106,14 @@
     .cnp h2 {
         font-size: 130%;
     }
+    .cnp:before, .cnp:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #125e19;
+        margin: 10px 0;
+    }
 }
 
 
@@ -979,7 +1128,6 @@
     color: #3e5e40;
     padding: 40px 0; /* Add padding to prevent overlap */
     overflow: hidden;   
-    height:65%;
     margin-bottom:2%;
 }
 
@@ -992,6 +1140,7 @@
 .detail  img {
     max-width: 50%;
     height:400px;
+    object-fit: cover; /* Ensures the image fills the area without distortion */
     overflow: hidden;
   }
 
@@ -1002,6 +1151,8 @@
     top: 80px;
     padding: 60px;
     line-height: 1.8rem;
+    text-align: justify;
+
   }
 
   .content-second p{
@@ -1028,7 +1179,7 @@
 
   @media (max-width: 1080px) {
     .detail{
-        height: 65%;
+        height: 85%;
     }
     .content-second {
         width: 72%;
@@ -1045,10 +1196,15 @@
     }
     .detail  img{
         height:250px;
+        margin-left: 20%;
     }
 }
 
   @media (max-width: 768px) {
+    .detail{
+        height: 78%;
+    }
+
     .content-second {
         width: 100%;
         position: static; /* Remove absolute positioning for smaller screens */
@@ -1064,13 +1220,21 @@
         font-size: 150%;
     }
     .detail  img{
-        height:200px;
+        height:240px;
+    }
+    .detail:before, .detail:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #125e19;
+        margin: 10px 0;
     }
 }
 
 @media (max-width: 480px) {
     .detail{
-        height: 70%;
+        height: 88%;
     }
     .content-second {
         padding: 20px;
@@ -1083,37 +1247,41 @@
     .detail h2 {
         font-size: 130%;
     }
+    .detail:before, .detail:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #125e19;
+        margin: 10px 0;
+    }
 }
 
 /* Styling for notice and news */
-.notice{
+.notice {
     /* background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 20%, rgb(0, 0, 0) 100%); */
-    margin-bottom: 0;
     margin-bottom: 0;
 }
 
 .news-updates-section {
     padding: 2rem;
-    width: 80%;
+    width: 80%; /* Reduced to 90% to ensure spacing on smaller screens */
     margin: 20px auto;
     margin-bottom: 0;
-    
 }
 
 .heading {
-    font-size: 3.2rem;
+    font-size: 2.5rem; /* Reduced font size for better readability on smaller screens */
     font-family: "Sacramento", cursive;
     margin-bottom: 1.5rem;
     font-weight: 600;
+    text-align: center; /* Center-align for a more responsive look */
 }
-
-
 
 .news-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust the min size for smaller screens */
     gap: 20px;
-    
 }
 
 .news-item {
@@ -1121,11 +1289,16 @@
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.news-item:hover {
+    transform: translateY(-5px); /* Slight hover effect */
 }
 
 .news-item img {
     width: 100%;
-    height: 90px;
+    height: 150px; /* Increased the height slightly for more visual impact */
     object-fit: cover;
 }
 
@@ -1134,11 +1307,43 @@
 }
 
 .news-info p {
-    font-size: 12px;
+    font-size: 1rem; /* Use rem for better scaling */
     font-weight: bold;
     line-height: 1.2;
     color: black;
-    
+}
+
+/* Media Queries for Responsive Design */
+
+/* For screens smaller than 768px (tablets and small devices) */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 2rem; /* Reduced heading size for smaller screens */
+    }
+
+    .news-item img {
+        height: 120px; /* Slightly smaller images for smaller screens */
+    }
+
+    .news-info p {
+        font-size: 0.9rem; /* Adjust the font size */
+    }
+}
+
+/* For screens smaller than 480px (mobile devices) */
+@media (max-width: 480px) {
+    .news-updates-section {
+        width: 95%; /* Reduce width on very small screens */
+        padding: 1rem;
+    }
+
+    .heading {
+        font-size: 1.8rem; /* Further reduce the font size */
+    }
+
+    .news-info p {
+        font-size: 0.8rem; /* Make text smaller for mobile */
+    }
 }
 
 
@@ -1241,3 +1446,189 @@
     display: block;
     fill: rgb(219, 233, 220);
 }
+
+
+/* events section */
+
+.upcoming-events{
+    width:98%;
+}
+
+.eventupcoming-events {
+    padding: 50px 0;
+    width: 85%;
+    margin: 0 auto; /* Center the section */
+}
+
+.events-container {
+    display: flex;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+    gap: 10px; /* Space between cards */
+}
+
+h1 {
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .eventcard-container {
+    margin: 10px;
+    display: grid;
+    grid-template-areas: 
+      'photo info';
+    grid-template-columns: 140px 1fr;
+    min-width: 35%;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    line-height: 1.75em;
+  }
+
+  
+  .eventphoto-container {
+    font-size: 1.5em;
+    background-color: #1e5003;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .eventinfo-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(245, 244, 239);
+}
+
+.eventnepalidate{
+    font-size: 1.2rem;
+    color:rgb(230, 231, 229);
+}
+
+
+.event-remaining-days .days-left {
+    font-size: 1.5rem;
+    font-weight: 550;
+    color: #ff6600;
+}
+
+
+/* Event name */
+.events-name {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom:0;
+    color: #2e4124;
+    text-transform:capitalize;
+}
+
+/* Event location with icon */
+.events-location {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.events-location::before {
+    content: '\f041'; /* Font Awesome map-marker icon */
+    font-family: 'FontAwesome';
+    margin-right: 5px;
+    color: #2e4124;
+}
+
+/* Event description */
+.events-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Event contact with icon */
+.eventcontact-link {
+    display: inline-block;
+    padding: 10px;
+    background-color: #3c552e;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.eventcontact-link:hover {
+    background-color: #587c49;
+    color:rgb(245, 244, 239);
+}
+
+/* FontAwesome icon setup */
+.eventcontact-link i {
+    margin-right: 5px;
+}
+
+/* Responsive Design */
+/* For smaller tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    .eventcard-container {
+        grid-template-areas: 'photo' 'info';
+        grid-template-columns: 1fr;
+        min-width: 100%; /* Make the card take full width */
+    }
+
+    .eventphoto-container {
+        width: 100%; /* Adjust the photo container to full width */
+        height: 120px; /* Adjust height for smaller screens */
+    }
+
+    .eventinfo-container {
+        padding: 15px;
+    }
+
+}
+
+/* For mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .eventcard-container {
+        grid-template-areas: 'photo' 'info';
+        grid-template-columns: 1fr;
+        min-width: 90%; /* Make the card take full width */
+    }
+
+    .eventphoto-container {
+        width: 100%; /* Adjust the photo container to full width */
+        height: 80px; /* Reduce height for smaller screens */
+    }
+
+    .eventinfo-container {
+        padding: 10px;
+    }
+
+    .events-name {
+        font-size: 1.2rem; /* Adjust font size for smaller screens */
+    }
+
+    .events-description {
+        font-size: 0.8rem; /* Smaller font size for description */
+    }
+
+    .eventcontact-link {
+        display: block;
+        text-align: center; /* Center align the text */
+        margin: 10px auto;  /* Center horizontally with margin */
+        width: fit-content; /* Ensure it doesn't stretch */
+    }
+}
+

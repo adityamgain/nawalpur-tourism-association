@@ -3,8 +3,11 @@ const path=require('path');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const methodOverride = require('method-override');
+const NepaliDate = require('nepali-date-converter');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
 
 const Blog = require('./models/blog');
 const Notice = require('./models/notice');
@@ -12,6 +15,8 @@ const Content = require('./models/content');
 const Hotel = require('./models/hotel');
 const Gallery = require('./models/gallery');
 const Event = require('./models/event');
+
+const deletePastEvents = require('./utils/eventCron');
 
 const app = express();
 
@@ -21,6 +26,13 @@ const port = 3000;
 app.engine('ejs',ejsMate);
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
+
+// Configure Cloudinary with your credentials
+cloudinary.config({
+  cloud_name: 'dgdbgblvb', // Replace with your Cloudinary cloud name
+  api_key: '446538248147746',       // Replace with your Cloudinary API key
+  api_secret: 'Ca01GSivuWo87zTBOXwGBg4DBhM'  // Replace with your Cloudinary API secret
+});
 
 // Serve static files
 app.use(methodOverride('_method'));
@@ -36,28 +48,33 @@ const uri = 'mongodb+srv://adityaamgain:aytida@amaltari.ql10o.mongodb.net/?retry
 mongoose.connect(uri)
 .then(() => {
     console.log('Connected to MongoDB Atlas');
+    deletePastEvents.start();
+
 })
 .catch((err) => {
     console.error('Error connecting to MongoDB Atlas:', err);
 });
 
 
-// Configure Multer to use Cloudinary storage
-// const storage = new CloudinaryStorage({
-//     cloudinary: cloudinary,
-//     params: {
-//         folder: 'blog-images', // Optional: Create a folder in Cloudinary
-//         allowed_formats: ['jpeg', 'png', 'jpg'],
-//     }
-// });
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: 'amaltari',  // Specify a folder in Cloudinary where images will be stored
+      allowed_formats: ['jpeg', 'png', 'jpg', 'gif'], // Allowed image formats
+    },
+  });
+  
+  // Initialize Multer upload with Cloudinary storage
+  const upload = multer({ storage });
 
-// const upload = multer({ storage: storage });
-
+  
   app.get('/', async(req, res) => {
     const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3); // Get latest 3 blogs
     const latestNotices = await Notice.find().sort({ createdAt: -1 }).limit(6); // Get latest 6 notices
     const galleryphotos = await Gallery.aggregate([{ $sample: { size: 8 } }]);
-    res.render('home', { blogs: latestBlogs, notices: latestNotices,photos:galleryphotos, currentPage: 'home' });
+    const upcomingevents = await Event.find().sort({ date: 1 }).limit(3);
+
+    res.render('home', { blogs: latestBlogs, notices: latestNotices, photos:galleryphotos, events: upcomingevents, currentPage: 'home' });
 });
 
 
@@ -169,10 +186,102 @@ app.delete('/hotel/list/delete/:id', async (req, res) => {
     }
 });
 
+app.get('/events',async(req,res)=>{
+    try {
+        const eventlist = await Event.find();
+
+        // Convert the dates of events into Nepali and format them
+        const eventlistWithNepaliDates = eventlist.map(event => {
+            const eventDate = new Date(event.date);
+            const englishFormattedDate = eventDate.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: 'short', // Short month for English date
+                year: 'numeric'
+            });
+
+            const nepaliDate = new NepaliDate(eventDate);
+            // Use full month name for Nepali date
+            const nepaliFormattedDate = nepaliDate.format('DD MMMM YYYY'); // Full month name
+
+            return {
+                ...event._doc,
+                englishDate: englishFormattedDate, // e.g., "12 Jul 2024"
+                nepaliDate: nepaliFormattedDate // e.g., "28 Asar 2081"
+            };
+        });
+
+        res.render('events', { eventlist: eventlistWithNepaliDates, currentPage: 'event' });
+    } catch (err) {
+        console.error('Error fetching events:', err);
+        res.status(500).send('Internal Server Error');
+    }
+})
+
+app.get('/events/add',async(req,res)=>{
+    res.render('addevents',{ currentPage: 'event' })
+  });
+  app.post('/events/add', async (req, res) => {
+    try {
+        const { event, date, venue, description, contact } = req.body;
+
+        // Convert the date from string to JavaScript Date object
+        const eventDate = new Date(date);
+
+        // Create a new event
+        const newEvent = new Event({
+            event,
+            date: eventDate, // Use the converted Date object
+            venue,
+            description,
+            contact
+        });
+        await newEvent.save();
+        res.redirect('/events');
+    } catch (err) {
+        console.error('Error adding new event:', err);
+        res.status(500).json({ error: 'Error adding new event' });
+    }
+});
+
+
+app.get('/events/:id/edit', async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).send('event not found');
+        }
+        res.render('editevent', { event, currentPage: 'event'});
+    } catch (err) {
+        console.error('Error fetching event for edit:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.post('/events/:id/edit', async (req, res) => {
+    const { event, date, venue, description, contact } = req.body;
+    try {
+        await Event.findByIdAndUpdate(req.params.id, { event, date, venue, description, contact }, { new: true });
+        res.redirect(`/events`); // Redirect to the updated blog post
+    } catch (err) {
+        console.error('Error updating event data:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.delete('/events/:id', async (req, res) => {
+    try {
+        await Event.findByIdAndDelete(req.params.id);
+        res.redirect('/events'); // Redirect to the blogs list after deletion
+    } catch (err) {
+        console.error('Error deleting event:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 app.get('/gallery', async (req, res) => {
     try {
         const gallerydetail = await Gallery.find(); 
-        res.render('gallery', { gallerydetail,currentPage: 'none'  });
+        res.render('gallery', { gallerydetail,currentPage: 'event'  });
     } catch (err) {
         console.error('Error fetching gallery:', err);
         res.status(500).send('Internal Server Error');
@@ -183,10 +292,12 @@ app.get('/gallery/add',async(req,res)=>{
     res.render('addphotos',{ currentPage: 'none'})
   });
 
-  app.post('/gallery/add', async (req, res) => {
+  app.post('/gallery/add', upload.single('imageFile'), async (req, res) => {
     try {
-        const { Photoby, content, imageUrl, tag } = req.body;
-        // Create a new blog post
+        const { Photoby, content, tag } = req.body;
+        const imageUrl = req.file.path; // Get the image URL from the uploaded file
+
+        // Create a new gallery item
         const newGallery = new Gallery({
             Photoby,
             content,
@@ -194,13 +305,12 @@ app.get('/gallery/add',async(req,res)=>{
             tag 
         });
         await newGallery.save();
-        res.redirect('/gallery')
+        res.redirect('/gallery');
     } catch (err) {
-        console.error('Error creating blog:', err);
-        res.status(500).json({ error: 'Error creating blog post' });
+        console.error('Error creating gallery item:', err);
+        res.status(500).json({ error: 'Error creating gallery item' });
     }
 });
-
 app.get('/gallery/:id/edit', async (req, res) => {
     try {
         const gallery = await Gallery.findById(req.params.id);
@@ -214,11 +324,52 @@ app.get('/gallery/:id/edit', async (req, res) => {
     }
 });
 
-app.post('/gallery/:id/edit', async (req, res) => {
-    const { Photoby, content, tag, imageUrl } = req.body;
+app.post('/gallery/:id/edit', upload.single('imageFile'), async (req, res) => {
+    const { Photoby, content, tag } = req.body; // Get data from the form
+    let imageUrl;
+
     try {
-        await Gallery.findByIdAndUpdate(req.params.id, { Photoby, content, tag, imageUrl }, { new: true });
-        res.redirect(`/gallery`); // Redirect to the updated blog post
+        // Find the existing gallery item
+        const galleryItem = await Gallery.findById(req.params.id);
+        if (!galleryItem) {
+            return res.status(404).send('Gallery item not found');
+        }
+
+        // Check if a new image was uploaded
+        if (req.file) {
+            // If a new image is uploaded, delete the previous image from Cloudinary
+            const publicId = galleryItem.imageUrl.split('/').slice(-2).join('/').split('.')[0]; // Extract public ID
+            console.log(`Attempting to delete image with public ID: ${publicId}`); // Log for debugging
+
+            const deletionResult = await cloudinary.uploader.destroy(publicId); // Delete the existing image
+            console.log('Deletion result:', deletionResult); // Log the result
+
+            // Get the new image URL from Cloudinary
+            imageUrl = req.file.path; 
+        } else {
+            // If no new image is uploaded, keep the existing image URL
+            imageUrl = galleryItem.imageUrl; 
+        }
+
+        // Update the gallery item with new data
+        const updateData = {
+            Photoby,
+            content,
+            tag,
+            imageUrl // Always set imageUrl, whether it’s updated or the same
+        };
+
+        const updatedGalleryItem = await Gallery.findByIdAndUpdate(
+            req.params.id,
+            updateData, // Fields to update
+            { new: true, runValidators: true } // Return the updated document and validate
+        );
+
+        if (!updatedGalleryItem) {
+            return res.status(404).send('Gallery item not found');
+        }
+
+        res.redirect('/gallery'); // Redirect to the list of gallery items
     } catch (err) {
         console.error('Error updating gallery data:', err);
         res.status(500).send('Internal Server Error');
@@ -228,8 +379,24 @@ app.post('/gallery/:id/edit', async (req, res) => {
 // Route to handle the deletion
 app.delete('/gallery/:id', async (req, res) => {
     try {
+        // Find the gallery item to get the image URL
+        const galleryItem = await Gallery.findById(req.params.id);
+        if (!galleryItem) {
+            return res.status(404).send('Gallery item not found');
+        }
+
+        // Extract the public ID from the image URL
+        const publicId = galleryItem.imageUrl.split('/').slice(-2).join('/').split('.')[0]; // Extract public ID
+        console.log(`Deleting image with public ID: ${publicId}`); // Log for debugging
+
+        // Delete the image from Cloudinary
+        const deletionResult = await cloudinary.uploader.destroy(publicId);
+        console.log('Deletion result:', deletionResult); // Log the result
+
+        // Delete the gallery item from the database
         await Gallery.findByIdAndDelete(req.params.id);
-        res.redirect('/gallery'); // Redirect to the blogs list after deletion
+        
+        res.redirect('/gallery'); // Redirect to the gallery list after deletion
     } catch (err) {
         console.error('Error deleting gallery:', err);
         res.status(500).send('Internal Server Error');
@@ -255,25 +422,34 @@ app.get('/blogs/:id',async(req,res)=>{
     res.render('addblog',{ currentPage: 'blog' })
   });
 
-  app.post('/addblogs', async (req, res) => {
+  app.post('/addblogs', upload.single('imageFile'), async (req, res) => {
     try {
-        const { title, content, author, imageUrl } = req.body;
-        // Create a new blog post
-        const newBlog = new Blog({
-            title,
-            content,
-            author,
-            imageUrl // Save the image URL to the database
-        });
-
-        await newBlog.save();
-
-        res.redirect('/blogs')
+      const { title, content, author } = req.body;
+  
+      // Ensure the image file was uploaded to Cloudinary
+      if (!req.file) {
+        return res.status(400).json({ error: 'No image file uploaded' });
+      }
+  
+      // Get the Cloudinary image URL from the uploaded file
+      const imageUrl = req.file.path;
+  
+      // Create a new blog post with the Cloudinary URL for the image
+      const newBlog = new Blog({
+        title,
+        content,
+        author,
+        imageUrl // Save the Cloudinary URL to the database
+      });
+  
+      await newBlog.save();
+  
+      res.redirect('/blogs');
     } catch (err) {
-        console.error('Error creating blog:', err);
-        res.status(500).json({ error: 'Error creating blog post' });
+      console.error('Error creating blog:', err);
+      res.status(500).json({ error: 'Error creating blog post' });
     }
-});
+  });
 
 // Route to render the edit form
 app.get('/blogs/:id/edit', async (req, res) => {
@@ -289,23 +465,81 @@ app.get('/blogs/:id/edit', async (req, res) => {
     }
 });
 
-// Route to handle the update
-app.post('/blogs/:id/edit', async (req, res) => {
-    const { title, content, author, imageUrl } = req.body;
+// Route to handle the update request
+app.post('/blogs/:id/edit', upload.single('imageFile'), async (req, res) => {
+    const { title, content, author } = req.body; // Get data from the form
+    let imageUrl;
+
     try {
-        await Blog.findByIdAndUpdate(req.params.id, { title, content, author, imageUrl }, { new: true });
-        res.redirect(`/blogs`); // Redirect to the updated blog post
+        // Find the existing blog post
+        const blog = await Blog.findById(req.params.id);
+        if (!blog) {
+            return res.status(404).send('Blog post not found');
+        }
+
+        // Check if a new image was uploaded
+        if (req.file) {
+            // If a new image is uploaded, delete the previous image from Cloudinary
+            const publicId = blog.imageUrl.split('/').slice(-2).join('/').split('.')[0]; // Extract public ID
+            console.log(`Attempting to delete image with public ID: ${publicId}`); // Log for debugging
+
+            const deletionResult = await cloudinary.uploader.destroy(publicId); // Delete the existing image
+            console.log('Deletion result:', deletionResult); // Log the result
+
+            // Get the new image URL from Cloudinary
+            imageUrl = req.file.path; 
+        } else {
+            // If no new image is uploaded, keep the existing image URL
+            imageUrl = blog.imageUrl; 
+        }
+
+        // Update the blog post with new data
+        const updateData = {
+            title,
+            content,
+            author,
+            imageUrl // Always set imageUrl, whether it’s updated or the same
+        };
+
+        const updatedBlog = await Blog.findByIdAndUpdate(
+            req.params.id,
+            updateData, // Fields to update
+            { new: true, runValidators: true } // Return the updated document and validate
+        );
+
+        if (!updatedBlog) {
+            return res.status(404).send('Blog post not found');
+        }
+
+        res.redirect('/blogs'); // Redirect to the list of blog posts
     } catch (err) {
         console.error('Error updating blog:', err);
         res.status(500).send('Internal Server Error');
     }
 });
 
+
 // Route to handle the deletion
 app.delete('/blogs/:id', async (req, res) => {
     try {
+        // Find the blog post to get the image URL
+        const blogPost = await Blog.findById(req.params.id);
+        if (!blogPost) {
+            return res.status(404).send('Blog post not found');
+        }
+
+        // Extract the public ID from the image URL
+        const publicId = blogPost.imageUrl.split('/').slice(-2).join('/').split('.')[0]; // Extract public ID
+        console.log(`Deleting image with public ID: ${publicId}`); // Log for debugging
+
+        // Delete the image from Cloudinary
+        const deletionResult = await cloudinary.uploader.destroy(publicId);
+        console.log('Deletion result:', deletionResult); // Log the result
+
+        // Delete the blog post from the database
         await Blog.findByIdAndDelete(req.params.id);
-        res.redirect('/blogs'); // Redirect to the blogs list after deletion
+        
+        res.redirect('/blogs'); // Redirect to the blog list after deletion
     } catch (err) {
         console.error('Error deleting blog:', err);
         res.status(500).send('Internal Server Error');
@@ -330,9 +564,18 @@ app.get('/addnotice',async(req,res)=>{
     res.render('addnotice',{ currentPage: 'notice' });
 })
 
-app.post('/addnotice', async (req, res) => {
+app.post('/addnotice', upload.single('imageFile'), async (req, res) => {
     try {
-        const { title,imageUrl } = req.body;
+        const { title } = req.body;
+
+      // Ensure the image file was uploaded to Cloudinary
+      if (!req.file) {
+        return res.status(400).json({ error: 'No image file uploaded' });
+      }
+  
+      // Get the Cloudinary image URL from the uploaded file
+      const imageUrl = req.file.path;
+
         // Create a new blog post
         const newNotice = new Notice({
             title,
@@ -362,17 +605,49 @@ app.get('/notices/edit/:id', async (req, res) => {
 });
 
 // Route to handle the update request
-app.post('/notices/edit/:id', async (req, res) => {
-    const { imageUrl, title } = req.body; // Data from the form
+app.post('/notices/edit/:id', upload.single('imageFile'), async (req, res) => {
+    const { title } = req.body; // Get the title from the form
+    let imageUrl;
+
     try {
-        const notice = await Notice.findByIdAndUpdate(
-            req.params.id, 
-            { imageUrl, title }, // Fields to update
-            { new: true, runValidators: true } // Return the updated document and validate
-        );
+        // Find the existing notice
+        const notice = await Notice.findById(req.params.id);
         if (!notice) {
             return res.status(404).send('Notice not found');
         }
+
+        // Check if an image was uploaded
+        if (req.file) {
+            // If a new image is uploaded, delete the previous image from Cloudinary
+            const publicId = notice.imageUrl.split('/').slice(-2).join('/').split('.')[0]; // Extract public ID
+            console.log(`Attempting to delete image with public ID: ${publicId}`); // Log public ID for debugging
+
+            const deletionResult = await cloudinary.uploader.destroy(publicId); // Delete the existing image
+            console.log('Deletion result:', deletionResult); // Log deletion result
+
+            // Get the new image URL from Cloudinary
+            imageUrl = req.file.path; 
+        } else {
+            // If no new image is uploaded, keep the existing image URL
+            imageUrl = notice.imageUrl; 
+        }
+
+        // Update notice with new data
+        const updateData = {
+            title,
+            imageUrl // Always set imageUrl, whether it’s updated or the same
+        };
+
+        const updatedNotice = await Notice.findByIdAndUpdate(
+            req.params.id,
+            updateData, // Fields to update
+            { new: true, runValidators: true } // Return the updated document and validate
+        );
+
+        if (!updatedNotice) {
+            return res.status(404).send('Notice not found');
+        }
+
         res.redirect('/notices'); // Redirect back to the notices list after update
     } catch (err) {
         console.error('Error updating notice:', err);
@@ -382,8 +657,24 @@ app.post('/notices/edit/:id', async (req, res) => {
 
 app.delete('/notice/:id', async (req, res) => {
     try {
+        // Find the notice to get the image URL
+        const notice = await Notice.findById(req.params.id);
+        if (!notice) {
+            return res.status(404).send('Notice not found');
+        }
+
+        // Extract the public ID from the image URL
+        const publicId = notice.imageUrl.split('/').slice(-2).join('/').split('.')[0]; // Extract public ID
+        console.log(`Deleting image with public ID: ${publicId}`); // Log for debugging
+
+        // Delete the image from Cloudinary
+        const deletionResult = await cloudinary.uploader.destroy(publicId);
+        console.log('Deletion result:', deletionResult); // Log the result
+
+        // Delete the notice from the database
         await Notice.findByIdAndDelete(req.params.id);
-        res.redirect('/notices'); 
+        
+        res.redirect('/notices'); // Redirect to the notices list after deletion
     } catch (err) {
         console.error('Error deleting notice:', err);
         res.status(500).send('Internal Server Error');

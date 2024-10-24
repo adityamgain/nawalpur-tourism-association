@@ -83,7 +83,7 @@
         <p>Amaltari, located on the edge of Chitwan National Park, is a hidden gem for eco-tourists and nature lovers. Amaltari is a key entry point to Chitwan National Park, located in the northern section of the park. This access point is strategically positioned to facilitate easy entry for visitors looking to explore the park’s wilderness.The entry through Amaltari provides a unique opportunity to explore the less-traveled northern areas of Chitwan, where visitors can experience the park’s tranquil beauty and diverse ecosystems away from the more frequented southern sections. 
     </div>
     <div class="image-second">
-        <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631987/WhatsApp_Image_2024-09-18_at_9.40.27_AM_j9zoud.jpg"/>
+        <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726555679/1_sbh1ri.jpg"/>
     </div>
     </div>
 </section>
@@ -95,10 +95,54 @@
         <p>Chitwan National Park, nestled in the heart of Nepal, is a UNESCO World Heritage Site renowned for its rich biodiversity and thrilling wildlife experiences. Spanning lush jungles and grasslands, the park is home to majestic Bengal tigers, one-horned rhinoceroses, and over 500 species of birds. Whether you're exploring on a jungle safari, canoeing along the Rapti River, or visiting traditional Tharu villages, Chitwan offers an unforgettable adventure that brings you closer to nature. Perfect for wildlife enthusiasts and eco-travelers, it's a must-visit destination for those seeking both serenity and excitement.
     </div>
     <div class="image">
-        <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726555679/1_sbh1ri.jpg"/>
+        <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631987/WhatsApp_Image_2024-09-18_at_9.40.27_AM_j9zoud.jpg"/>
     </div>
     </div>
 </section><br>
+
+
+<% if (events.length > 0) { %>
+<section class="upcoming-events">
+    <h2 class="heading">Upcoming Events</h2>
+    <div class="scroll-wrapper">
+        <div class="events-container">
+            <!-- Example of an event card -->
+            <% events.forEach(list => { %>
+            <div class="eventcard-container">
+                <div class="eventphoto-container">
+                    <div class="eventdate">
+                        <div class="eventfull-date">
+                        <p class="event-remaining-days" data-event-date="<%= list.date %>">Join Us In <span class="days-left">0</span> days</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="eventinfo-container">
+                    <div class="events-name">
+                        <%= list.event %>
+                    </div>
+                    <div class="events-location">
+                        <%= list.venue %>
+                    </div>
+                    <div class="events-description">
+                        <%= list.description %>
+                    </div>
+                    <div class="events-contact">
+                        <a href="tel:+977<%= list.contact %>" class="eventcontact-link">
+                            <i class="fas fa-phone"></i> Call Us 
+                        </a> 
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        <a href="/events" class="read-all">View Upcoming Events..</a>
+    </div>
+</section>
+<% } %>
+
+
+
+
 
 <section class="places-map">
     <h2 class="headingsecond">#Never Too Late For</h2>
@@ -147,8 +191,7 @@
 
             <!-- Right Half with Image -->
             <div class="right-half">
-                <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1727863757/Image-2-removebg-preview_hp5npd.png" alt="">
-            </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28295.41498354916!2d84.06369937431643!3d27.56477989999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39945b53ff70b2f1%3A0x3cb640ea2a6fa92f!2sAmaltari!5e0!3m2!1sen!2snp!4v1729489573501!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
         </div>
     </div>
 </section>
@@ -210,7 +253,7 @@ Nawalpur Tourism Association is a representative organization in the hospitatili
             </div>
         <% }); %>
     </div>
-    <a href="/blogs/" class="read-all">Read All Posts</a>
+    <a href="/blogs/" class="read-all">Read All Blogs</a>
 </section>
 
 
@@ -227,7 +270,7 @@ Nawalpur Tourism Association is a representative organization in the hospitatili
             </div>
             <% }); %>
         </div>
-        <a href="/notices" class="read-all">Read All Posts</a>
+        <a href="/notices" class="read-all">Read All Notices</a>
     </div>
 </section>
 

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const gallerySchema = new mongoose.Schema({
-    imageUrl: { type: String,required: true },  // Store Cloudinary image URL here
+    imageUrl: { type: String,required: true },  
     content: { type: String},
-    Photoby: { type: String, required: true  },  // Store Cloudinary image URL here
+    Photoby: { type: String, required: true  },  
     tag: { type: String, required:true }
 });
 

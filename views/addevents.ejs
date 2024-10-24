@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nawalpur Tourism</title>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726634760/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/events.css">
+
+    <!-- Montserrat Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Include Navbar Partial -->
+    <%- include('partials/navbar') %>
+
+
+<div class="event-page">
+    <div class="event-image">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dgdbgblvb/video/upload/v1729586962/IMG_6721_p0rklw.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Content Overlay -->
+        <div class="quote">
+            <h4>Upcoming Events</h4>
+        </div>
+    </div>
+</div>
+<br><p>
+
+
+<section class="form">
+    <form action="/events/add" method="POST" class="event-form">
+    <div class="form-group">
+        <label for="event">Event Name</label>
+        <input type="text" id="event" name="event" class="form-control" placeholder="Enter event name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="date">Event Date</label>
+        <input type="date" id="date" name="date" class="form-control" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="venue">Venue</label>
+        <input type="text" id="venue" name="venue" class="form-control" placeholder="Enter venue" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" class="form-control" placeholder="Enter description" required>
+    </div>
+
+    <div class="form-group">
+        <label for="contact">Contact</label>
+        <input type="number" id="contact" name="contact" class="form-control" placeholder="Enter contact" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Event</button>
+    </form>
+</section>
+
+
+    <!-- Include Footer Partial -->
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

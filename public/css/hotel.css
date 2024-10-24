@@ -64,10 +64,6 @@ body {
     }
 }
 
-.article h3 {
-    text-align: center;
-}
-
 .key-features {
     margin: 10px 0;
 }
@@ -81,8 +77,8 @@ body {
     }
 
     .article {
-        font-size: 1rem; /* Smaller text size */
-        line-height: 1.5; /* Adjust line height for readability */
+        font-size: 1rem; 
+        line-height: 1.5; 
     }
 }
 
@@ -94,7 +90,7 @@ body {
 
     .article {
         font-size: 0.9rem; /* Adjust text size */
-        padding: 0 10px; /* Reduce padding for smaller screens */
+        padding: 2%; /* Reduce padding for smaller screens */
     }
 }
 
@@ -111,76 +107,175 @@ body {
     }
 }
 
+/* Photo Gallery Container */
 .photo-gallery {
+    position: relative;
+    max-width: 900px;
+    margin: 20px auto;
+    overflow: hidden; /* Ensure the slider doesn't overflow */
+}
+
+.photo-slider {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  .photo {
-    text-align: center;
-    margin:0.4%;
-  }
-  .photo img {
-    width: 260px;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Individual Photos */
+.photo {
+    min-width: 100%; /* Each photo takes full width of the container */
+    transition: transform 0.5s ease-in-out;
+}
+
+.photo img {
+    width: 100%;
     height: 280px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
+    object-fit: cover;
     border-radius: 8px;
-  }
+}
 
-  @media (max-width: 768px) {
-    .photo-gallery {
-      grid-template-columns: 1fr;
+/* Navigation Buttons */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .photo-slider {
+        width: 200%; /* Allow for multiple photos to be displayed */
     }
 
-    .photo img {
-      max-width: 100%;
-      max-height: 70%;
+    .photo {
+        min-width: 50%; /* Two photos per view on larger screens */
     }
-  }
+}
+
+@media (min-width: 1024px) {
+    .photo-slider {
+        width: 300%; /* Allow for three photos to be displayed */
+    }
+
+    .photo {
+        min-width: 33.33%; /* Three photos per view on larger screens */
+    }
+}
 
 
 
   /* hotellist */
 
   .hotellist {
-    padding:1.5em;
-    margin:5%;
-  }
-  
-  table {
+    padding: 1.5em;
+    margin: 5%;
+}
+
+table {
     border: 1px #a39485 solid;
-    font-size: .9em;
+    font-size: 0.9em;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
     width: 100%;
     border-collapse: collapse;
     border-radius: 5px;
     overflow: hidden;
-  }
-  
-  th {
+}
+
+th {
     text-align: left;
-  }
-    
-  thead {
+}
+
+thead {
     font-weight: bold;
     color: #fff;
     background: #73685d;
-  }
-    
-   td, th {
-    padding: 1em .5em;
+}
+
+td, th {
+    padding: 1em 0.5em;
     vertical-align: middle;
-  }
-    
-   td {
+}
+
+td {
     border-bottom: 1px solid rgba(0,0,0,.1);
     background: #fff;
-  }
-  
-  a {
-    color: #73685d;
-  }
+}
+
+/* Styling for the website and location links */
+.website-link, .location-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #7e6651;
+    font-size: 0.9em;
+}
+
+.website-link i, .location-link i {
+    margin-right: 0.5em;
+}
+
+/* On small screens, show icons only */
+@media only screen and (max-width: 768px) {
+    .website-text, .location-text {
+        display: none; /* Hide text on small screens */
+    }
+
+    .website-link i, .location-link i {
+        margin-right: 0; /* Adjust margin for icons */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    table {
+        font-size: 0.8em;
+    }
     
+    td, th {
+        padding: 0.5em;
+    }
+
+    .website-link i, .location-link i {
+        font-size: 1.2em; /* Increase icon size for mobile */
+    }
+}
+/* Styling for the "Choose your stay" link */
+.stay-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: #5aad22;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.stay-link i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.stay-link:hover {
+    color: #3b5132;
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover{
+    text-decoration: underline;
+}

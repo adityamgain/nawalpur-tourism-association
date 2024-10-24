@@ -40,33 +40,45 @@
         <br><p>
 
 <section class="hotellist">
-<h4><a href="/hotel/list/add">add your hotel</a></h4>
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Visit Website</th>
-        <th>Location</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <% hotelslist.forEach(list => { %>
-    <tr>        <a href=""></a>
-
-        <td><%= list.name %>
-            <button type="submit" class="delete-button"><a href="/hotel/list/<%= list._id %>/edit" class="edit-button">Edit</a></button>
-            <form action="/hotel/list/delete/<%= list._id %>?_method=DELETE" method="POST" style="display:inline;">
-                <button type="submit" class="delete-button">Delete</button>
-            </form> 
-        </td>
-        <td><a href="<%= list.website %>"><%= list.website %></a></td>
-        <td><a href="<%= list.location %>">View Location</a></td>
-    </tr>
-    <% }) %>
-    </tbody>
-</table>
+    <h4><a href="/hotel/list/add">Add your hotel</a></h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Visit Website</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% hotelslist.forEach(list => { %>
+            <tr>
+                <td>
+                    <%= list.name %>
+                    <button type="submit" class="delete-button"><a href="/hotel/list/<%= list._id %>/edit" class="edit-button">Edit</a></button>
+                    <form action="/hotel/list/delete/<%= list._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+                <!-- Website column -->
+                <td>
+                    <a href="<%= list.website %>" class="website-link">
+                        <i class="fas fa-globe"></i> 
+                        <span class="website-text"><%= list.website %></span>
+                    </a>
+                </td>
+                <!-- Location column -->
+                <td>
+                    <a href="<%= list.location %>" class="location-link">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="location-text">View Location</span>
+                    </a>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </section>
+
 
 
     <!-- Include Footer Partial -->

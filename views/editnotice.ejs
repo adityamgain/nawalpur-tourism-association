@@ -10,9 +10,9 @@
 <body>
 
     <h2>Edit Notice</h2>
-    <form action="/notices/edit/<%= notice._id %>" method="POST">
-        <label for="imageUrl">Image URL:</label>
-        <input type="text" name="imageUrl" id="imageUrl" value="<%= notice.imageUrl %>" required>
+    <form action="/notices/edit/<%= notice._id %>" method="POST" enctype="multipart/form-data">
+        <label for="imageFile">Image URL:</label>
+        <input type="file" name="imageFile" />
 
         <label for="message">Message:</label>
         <textarea name="title" id="message" rows="5" required><%= notice.title %></textarea>

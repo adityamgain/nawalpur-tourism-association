@@ -30,12 +30,159 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
 }
+
+/* Main container for the notice section */
+.notice {
+    padding: 2em;
+    background-color: #f9f9f9;
+}
+
+/* Container for the list of news and updates */
+.news-updates-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+/* Flex container for news items */
+.news-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: space-between; /* Space between items */
+}
+
+/* Individual news items */
+.news-item {
+    display: flex;
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s; /* Added hover effect */
+    margin-bottom: 1.5em; /* Space between items */
+    width: calc(33.333% - 1em); /* Responsive width for 3 items per row */
+}
+
+.news-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* News image */
+.news-item img {
+    width: 100%; /* Full width */
+    object-fit: cover; /* Ensure images cover the area without stretching */
+    border-radius: 8px;
+    margin-bottom: 1em; /* Space between image and content */
+}
+
+/* News info */
+.news-info {
+    text-align: center; /* Center the content */
+    width: 100%;
+}
+
+/* Style for paragraph inside news info */
+.news-info p {
+    font-size: 1.1em;
+    margin: 0.5em 0; /* Margin for spacing */
+    font-weight: 600; /* Bold the title */
+}
+
+/* Buttons inside news info */
+.news-info button,
+.news-info a {
+    display: inline-block;
+    margin: 0.5em 0;
+}
+
+/* Button styles */
+.download-btn,
+.edit-button,
+.delete-button {
+    padding: 0.5em 1em; /* Padding for buttons */
+    font-size: 1em; /* Button font size */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for background color */
+}
+
+.download-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+}
+
+.download-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.edit-button {
+    color: white; /* White text */
+}
+
+.delete-button {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .news-item {
+        width: calc(50% - 1em); /* 2 items per row on medium screens */
+    }
+
+    .news-info p {
+        font-size: 1em; /* Adjusting font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .news-item {
+        width: 100%; /* 1 item per row on small screens */
+    }
+
+    .news-info p {
+        font-size: 0.9em; /* Further adjusting font size for smaller screens */
+    }
+
+    .notice {
+        padding: 1em; /* Reduce padding for mobile */
+    }
+}
+
+
+
+/* Download button styling */
+.download-btn {
+    display: inline-flex; /* Align icon and text in a row */
+    align-items: center; /* Center the items vertically */
+    padding: 0.5em 1em;
+    background-color: #3d6142; /* Blue background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.download-btn i {
+    margin-right: 0.5em; /* Space between icon and text */
+}
+
 
 .form{
     margin:8%;

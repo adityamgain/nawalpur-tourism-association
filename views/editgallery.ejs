@@ -38,7 +38,7 @@
 
 
 <section class="form">
-    <form action="/gallery/<%= gallery._id %>/edit" method="POST" class="gallery-form">
+    <form action="/gallery/<%= gallery._id %>/edit" method="POST" class="gallery-form" enctype="multipart/form-data">
         <div class="form-group">
             <label for="Photoby">Photo Captured By:</label>
             <input type="text" name="Photoby" id="Photoby" value="<%= gallery.Photoby %>" required>
@@ -50,8 +50,8 @@
         </div>
 
         <div class="form-group">
-            <label for="imageUrl">Image URL:</label>
-            <input type="text" name="imageUrl" id="imageUrl" value="<%= gallery.imageUrl %>" required>
+            <label for="imageFile">Image URL:</label>
+        <input type="file" name="imageFile" />
         </div>
 
         <div class="form-group">

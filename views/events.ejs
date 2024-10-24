@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nawalpur Tourism</title>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726634760/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/events.css">
+
+    <!-- Montserrat Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Include Navbar Partial -->
+    <%- include('partials/navbar') %>
+
+
+<div class="event-page">
+    <div class="event-image">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dgdbgblvb/video/upload/v1729586962/IMG_6721_p0rklw.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Content Overlay -->
+        <div class="quote">
+            <h4>Upcoming Events</h4>
+        </div>
+    </div>
+</div>
+<br><p>
+
+
+
+    <h4><a href="/events/add">Add new events</a></h4>
+
+
+<section class="listevents">
+    <% if (eventlist.length === 0) { %>
+        <div class="no-events">
+            <i class="fas fa-calendar-times"></i>
+            <p>No events available at the moment. Please check back later.</p>
+        </div>
+    <% } else { %>
+        <% eventlist.forEach(list => { %>
+            <div class="card-container">
+                <div class="photo-container">
+                    <div class="date">
+                        <div class="full-date">
+                            <%= list.nepaliDate %> <p class="nepalidate">(<%= list.englishDate %>)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-container">
+                    <div class="event-name">
+                        <%= list.event %>
+                    </div>
+                    <div class="event-location">
+                        <%= list.venue %>
+                    </div>
+                    <div class="event-description">
+                        <%= list.description %>
+                    </div>
+                    <div class="event-contact">
+                        <a href="tel:+977<%= list.contact %>" class="contact-link">
+                            <i class="fas fa-phone"></i> Call Us 
+                        </a> 
+                    </div>
+                    <button type="submit" class="delete-button" style="display:inline;">
+                        <a href="/events/<%= list._id %>/edit" class="edit-button">Edit</a>
+                    </button>
+                    <form action="/events/<%= list._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit" class="primary-button">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+</section>
+
+
+    <!-- Include Footer Partial -->
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

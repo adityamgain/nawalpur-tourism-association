@@ -50,7 +50,6 @@
                  data-photoby="<%= photo.Photoby %>" 
                  onclick="openImage(<%= index %>)">
                 <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>">
-                <p><%= photo.content %></p>
                 <button type="submit" class="delete-button">
                     <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a>
                 </button>

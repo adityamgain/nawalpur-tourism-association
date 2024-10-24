@@ -39,6 +39,7 @@
             </div>
         </div>
 
+
 <section class="notice">
     <div class="news-updates-section">
         <div class="news-container">
@@ -48,9 +49,14 @@
                     <div class="news-info">
                         <p><%= notice.title %></p>
                         <a href="<%= notice.imageUrl %>" download>
-                            <button class="download-btn">Download Image</button>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download Image
+                            </button>
+                        </a><br>
+                        <a href="/notices/edit/<%= notice._id %>" class="edit-button">
+                            <button type="submit" class="delete-button">Edit
+                            </button>
                         </a>
-                        <button type="submit" class="delete-button"><a href="/notices/edit/<%= notice._id %>" class="edit-button">Edit</a></button>
                         <form action="/notice/<%= notice._id %>?_method=DELETE" method="POST" style="display:inline;">
                             <button type="submit" class="delete-button">Delete</button>
                         </form>
@@ -62,9 +68,13 @@
 </section>
 
 
+
     <!-- Include Footer Partial -->
     <%- include('partials/footer') %>
 
     <script src="/js/script.js"></script>
 </body>
 </html>
+
+
+

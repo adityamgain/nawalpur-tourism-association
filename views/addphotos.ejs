@@ -38,7 +38,7 @@
 
 
 <section class="form">
-    <form action="/gallery/add" method="POST" class="gallery-form">
+    <form action="/gallery/add" method="POST"  enctype="multipart/form-data" class="gallery-form">
         <div class="form-group">
             <label for="Photoby">Photo Captured By:</label>
             <input type="text" name="Photoby" id="Photoby" required>
@@ -50,8 +50,7 @@
         </div>
 
         <div class="form-group">
-            <label for="imageUrl">Image URL:</label>
-            <input type="text" name="imageUrl" id="imageUrl" required>
+            <input type="file" name="imageFile" required />
         </div>
 
         <div class="form-group">

@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Edit Blog Post</h1>
-    <form action="/blogs/<%= blog._id %>/edit" method="POST">
+    <form action="/blogs/<%= blog._id %>/edit" method="POST" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" name="title" id="title" value="<%= blog.title %>" required>
 
@@ -18,8 +18,8 @@
         <label for="author">Author:</label>
         <input type="text" name="author" id="author" value="<%= blog.author %>" required>
 
-        <label for="image">Upload Image:</label>
-        <input type="text" name="imageUrl" id="image" value="<%= blog.imageUrl %>" required>
+        <label for="imageFile">Upload Image:</label>
+        <input type="file" name="imageFile" />
 
         <button type="submit">Update Blog Post</button>
     </form>
