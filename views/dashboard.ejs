@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <title>Nawalpur Tourism Dashboard</title>
+</head>
+<body>
+    <div class="container">
+            <!-- Logo Section -->
+        <a href="/logout" class="logout-button">Logout</a>
+
+        <div class="logo-container">
+            <img src="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726634760/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb.png" alt="Nawalpur Tourism Logo" class="logo" />
+        </div>
+        <h1>Nawalpur Tourism Association</h1>
+        <h2>Admin Dashboard</h2>
+
+        <!-- Blog Section -->
+        <section class="section blog-section">
+            <h2 class="collapsible" onclick="toggleSection('blog-content')">Blogs Section</h2>
+            <div class="collapsible-content" id="blog-content">
+                <button class="add-button" onclick="window.location.href='/addblogs'">Add Blog</button>
+                <% if (blogs.length === 0) { %>
+                    <p>No blogs available.</p>
+                <% } else { %>
+                    <div class="grid">
+                        <% blogs.forEach(blog => { %>
+                            <div class="card notice-card">
+                                <h3 class="card-title"><%= blog.title || 'No Title' %></h3>
+                                <p class="card-content"><%= blog.content ? blog.content.substring(0, 100) + '...' : 'No content available' %></p>
+                                <div class="card-footer">
+                                    <span class="card-date"><%= new Date(blog.createdAt).toLocaleDateString() %></span>
+                                    <a href="/blogs/<%= blog._id %>/edit" class="edit-button">Edit</a>
+                                <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form> <!-- Delete Button -->
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="section event-section">
+            <h2 class="collapsible" onclick="toggleSection('event-content')">Events Section</h2>
+            <div class="collapsible-content" id="event-content">
+                <button class="add-button" onclick="window.location.href='/events/add'">Add Event</button>
+                <% if (events.length === 0) { %>
+                    <p>No events available.</p>
+                <% } else { %>
+                    <div class="grid">
+                        <% events.forEach(event => { %>
+                            <div class="card notice-card">
+                                <h3 class="card-title"><%= event.event || 'No Title' %></h3>
+                                <p class="card-content"><%= event.description ? event.description.substring(0, 100) + '...' : 'No description available' %></p>
+                                <p><strong>Date:</strong> <%= new Date(event.date).toLocaleDateString() %></p>
+                                <p><strong>Venue:</strong> <%= event.venue || 'No Venue' %></p>
+                                <p><strong>Contact:</strong> <%= event.contact || 'No Contact' %></p>
+                                <div class="card-footer">
+                                    <a href="/events/<%= event._id %>/edit" class="edit-button">Edit</a>
+                                <form action="/events/<%= event._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- Notices Section -->
+        <section class="section notice-section">
+            <h2 class="collapsible" onclick="toggleSection('notice-content')">Notices Section</h2>
+            <div class="collapsible-content" id="notice-content">
+                <button class="add-button" onclick="window.location.href='/addnotice'">Add Notice</button>
+                <% if (notices.length === 0) { %>
+                    <p>No notices available.</p>
+                <% } else { %>
+                    <div class="grid">
+                        <% notices.forEach(notice => { %>
+                            <div class="card notice-card">
+                                <h3 class="card-title"><%= notice.title || 'No Title' %></h3>
+                                <div class="card-footer">
+                                    <span class="card-date"><%= new Date(notice.createdAt).toLocaleDateString() %></span>
+                                    <a href="/notices/edit/<%= notice._id %>" class="edit-button">Edit</a>
+                        <form action="/notice/<%= notice._id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section gallery-section">
+            <h2 class="collapsible" onclick="toggleSection('gallery-content')">Gallery Section</h2>
+            <div class="collapsible-content" id="gallery-content">
+                <button class="add-button" onclick="window.location.href='/gallery/new'">Add Photo</button>
+                <% if (gallery.length === 0) { %>
+                    <p>No photos available.</p>
+                <% } else { %>
+                    <div class="gallery-container">
+                        <% gallery.forEach(photo => { %>
+                            <div class="gallery-item">
+                                <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>" class="gallery-image" />
+                                <h3 class="gallery-title"><%= photo.content %></h3>
+                                <p class="gallery-photoby">Photo by: <%= photo.Photoby %></p>
+                                <p class="gallery-tag">Tag: <%= photo.tag %></p>
+                                <div class="gallery-actions">
+                                    <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a>
+                                    <form action="/gallery/<%= photo._id %>/delete" method="POST" style="display:inline;">
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- Hotel List Section -->
+        <section class="section hotel-section">
+            <h2 class="collapsible" onclick="toggleSection('hotel-content')">Hotel List Section</h2>
+            <div class="collapsible-content" id="hotel-content">
+                <button class="add-button" onclick="window.location.href='/hotel/list/add'">Add Hotel</button>
+                <% if (hotels.length === 0) { %>
+                    <p>No hotels available.</p>
+                <% } else { %>
+                    <div class="grid">
+                        <% hotels.forEach(hotel => { %>
+                            <div class="card notice-card">
+                                <h3 class="card-title"><%= hotel.name || 'No Name' %></h3>
+                                <p><strong>Website:</strong> <a href="<%= hotel.website %>" target="_blank"><%= hotel.website %></a></p>
+                                <p><strong>Location:</strong> <%= hotel.location || 'No Location' %></p>
+                                <div class="card-footer">
+                                    <a href="/hotel/list/<%= hotel._id %>/edit" class="edit-button">Edit</a>
+                                <form action="/hotel/list/delete/<%= hotel._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="/js/admin_dashboard.js"></script>
+</body>
+</html>

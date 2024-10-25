@@ -1,0 +1,237 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1729835152/Beige_Minimalist_Floral_Leaves_Pattern_Mousepad.png');
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the background image */
+    background-attachment: fixed; /* Keeps the background in place when scrolling */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    margin-top: 0;
+    padding-top: 0%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.541);
+    border-radius: 12px;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem; /* Adjust the size */
+    color: #333333; /* Dark gray color */
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 1px; /* Spacing between letters */
+    font-weight: 700; /* Bold */
+}
+
+/* CSS for h2 (Section Headings) */
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* Adjust the size */
+    color: #0056b3; /* Medium blue color */
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 500; /* Semi-bold */
+    cursor: pointer; /* Pointer to indicate collapsible section */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+
+
+.section {
+    margin-bottom: 20px; /* Increased margin for better separation */
+}
+
+.collapsible {
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding: 10px;
+    background-color: rgb(190, 161, 107); /* Background color for collapsible headers */
+    color: white; /* Text color for collapsible headers */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 5px; /* Space below the header */
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.collapsible:hover {
+    background-color: rgb(160, 131, 79); /* Darker shade on hover */
+}
+
+.collapsible-content {
+    padding: 10px; /* Padding for content */
+    border: 2px solid rgb(221, 175, 88); /* Border color for content area */
+    border-top: none;
+    border-radius: 2px; /* Rounded corners */
+    background-color: #f8f9fa; /* Light background for content area */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.notice-card {
+    background: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.notice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+    text-align: center; /* Center the logo */
+    margin-bottom: 20px; /* Space below the logo */
+}
+
+.logo {
+    max-width: 150px; /* Set a maximum width for the logo */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.card-title {
+    color: #30220a;
+    font-size: 1.2em;
+    text-transform: capitalize;
+    margin: 0 0 10px;
+}
+
+.card-content {
+    color: #555;
+    margin-bottom: 15px;
+    height: 60px; /* Ensure content area is consistent */
+    overflow: hidden; /* Hide overflow to keep cards uniform */
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.card-date {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.edit-button, .delete-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.edit-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.no-notices {
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centering items */
+    gap: 20px; /* Spacing between items */
+    margin-top: 20px; /* Space above the gallery */
+}
+
+.gallery-item {
+    background-color: #fff; /* Background color for items */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center; /* Center text inside item */
+    padding: 15px; /* Padding inside the item */
+    width: 300px; /* Fixed width for uniformity */
+    transition: transform 0.3s; /* Animation for hover effect */
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.gallery-image {
+    width: 100%; /* Full width of the item */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+.gallery-title {
+    font-size: 1.2em; /* Title size */
+    margin: 10px 0 5px; /* Margin around the title */
+    font-weight: bold; /* Bold title */
+}
+
+.gallery-photoby,
+.gallery-tag {
+    color: #666; /* Lighter color for photo credit and tags */
+    margin: 5px 0; /* Margin around photo by and tag */
+}
+
+
+
+.add-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.logout-button {
+    display: inline-block;
+    background-color: #503b14;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: auto;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+}

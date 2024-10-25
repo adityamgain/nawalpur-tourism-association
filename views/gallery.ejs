@@ -38,7 +38,6 @@
         </div>
         <br><p>
 
-<h4><a href="/gallery/add">Add photos</a></h4>
 
 
 <div class="gallery-section">
@@ -50,12 +49,6 @@
                  data-photoby="<%= photo.Photoby %>" 
                  onclick="openImage(<%= index %>)">
                 <img src="<%= photo.imageUrl %>" alt="<%= photo.content %>">
-                <button type="submit" class="delete-button">
-                    <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a>
-                </button>
-                <form action="/gallery/<%= photo._id %>?_method=DELETE" method="POST" style="display:inline;">
-                    <button type="submit" class="delete-button">Delete</button>
-                </form>
             </div>
         <% }) %>
     </div>

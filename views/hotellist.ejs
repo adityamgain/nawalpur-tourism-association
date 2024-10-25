@@ -40,7 +40,6 @@
         <br><p>
 
 <section class="hotellist">
-    <h4><a href="/hotel/list/add">Add your hotel</a></h4>
     <table>
         <thead>
             <tr>
@@ -54,10 +53,6 @@
             <tr>
                 <td>
                     <%= list.name %>
-                    <button type="submit" class="delete-button"><a href="/hotel/list/<%= list._id %>/edit" class="edit-button">Edit</a></button>
-                    <form action="/hotel/list/delete/<%= list._id %>?_method=DELETE" method="POST" style="display:inline;">
-                        <button type="submit" class="delete-button">Delete</button>
-                    </form>
                 </td>
                 <!-- Website column -->
                 <td>

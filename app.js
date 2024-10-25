@@ -6,6 +6,11 @@ const multer = require('multer');
 const methodOverride = require('method-override');
 const NepaliDate = require('nepali-date-converter');
 const cloudinary = require('cloudinary').v2;
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const flash = require('connect-flash');
+const bcrypt = require('bcrypt');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 
@@ -15,6 +20,9 @@ const Content = require('./models/content');
 const Hotel = require('./models/hotel');
 const Gallery = require('./models/gallery');
 const Event = require('./models/event');
+const Admin = require('./models/admin');
+const ensureAuthenticated = require('./middleware/ensureAuthenticated');
+
 
 const deletePastEvents = require('./utils/eventCron');
 
@@ -39,8 +47,45 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(session({
+    secret: 'secret-key', // Change this to a more secure key
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use(flash());
+  
+app.use(passport.initialize());
+app.use(passport.session());
 
-
+passport.use(new LocalStrategy(async (username, password, done) => {
+    try {
+      const admin = await Admin.findOne({ username });
+      if (!admin) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      const isMatch = await admin.comparePassword(password);
+      if (!isMatch) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, admin);
+    } catch (error) {
+      return done(error);
+    }
+  }));
+  
+  // Serialize and deserialize user
+  passport.serializeUser((admin, done) => {
+    done(null, admin.id);
+  });
+  
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const admin = await Admin.findById(id);
+      done(null, admin);
+    } catch (error) {
+      done(error);
+    }
+  });
 
 // MongoDB Atlas connection string
 const uri = 'mongodb+srv://adityaamgain:aytida@amaltari.ql10o.mongodb.net/?retryWrites=true&w=majority&appName=amaltari';
@@ -66,7 +111,6 @@ const storage = new CloudinaryStorage({
   
   // Initialize Multer upload with Cloudinary storage
   const upload = multer({ storage });
-
   
   app.get('/', async(req, res) => {
     const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3); // Get latest 3 blogs
@@ -128,7 +172,7 @@ app.get('/hotel/list', async (req, res) => {
   });
 
 
-  app.get('/hotel/list/add',async(req,res)=>{
+  app.get('/hotel/list/add',ensureAuthenticated,async(req,res)=>{
     res.render('addhotellist',{ currentPage: 'hotel' })
   });
 
@@ -144,14 +188,14 @@ app.get('/hotel/list', async (req, res) => {
 
         await newHotel.save();
 
-        res.redirect('/hotel/list')
+        res.redirect('/dashboard')
     } catch (err) {
         console.error('Error creating blog:', err);
         res.status(500).json({ error: 'Error creating blog post' });
     }
 });
 
-app.get('/hotel/list/:id/edit', async (req, res) => {
+app.get('/hotel/list/:id/edit', ensureAuthenticated, async (req, res) => {
     try {
         const hotel = await Hotel.findById(req.params.id);
         if (!hotel) {
@@ -169,17 +213,17 @@ app.post('/hotel/list/:id/edit', async (req, res) => {
     const { name, website, location } = req.body;
     try {
         await Hotel.findByIdAndUpdate(req.params.id, { name, website, location }, { new: true });
-        res.redirect('/hotel/list'); // Redirect to the updated blog post
+        res.redirect('/dashboard'); // Redirect to the updated blog post
     } catch (err) {
         console.error('Error updating blog:', err);
         res.status(500).send('Internal Server Error');
     }
 });
 
-app.delete('/hotel/list/delete/:id', async (req, res) => {
+app.delete('/hotel/list/delete/:id',ensureAuthenticated, async (req, res) => {
     try {
         await Hotel.findByIdAndDelete(req.params.id);
-        res.redirect('/hotel/list'); // Redirect to the blogs list after deletion
+        res.redirect('/dashboard'); // Redirect to the blogs list after deletion
     } catch (err) {
         console.error('Error deleting blog:', err);
         res.status(500).send('Internal Server Error');
@@ -217,7 +261,7 @@ app.get('/events',async(req,res)=>{
     }
 })
 
-app.get('/events/add',async(req,res)=>{
+app.get('/events/add',ensureAuthenticated, async(req,res)=>{
     res.render('addevents',{ currentPage: 'event' })
   });
   app.post('/events/add', async (req, res) => {
@@ -236,7 +280,7 @@ app.get('/events/add',async(req,res)=>{
             contact
         });
         await newEvent.save();
-        res.redirect('/events');
+        res.redirect('/dashboard');
     } catch (err) {
         console.error('Error adding new event:', err);
         res.status(500).json({ error: 'Error adding new event' });
@@ -244,7 +288,7 @@ app.get('/events/add',async(req,res)=>{
 });
 
 
-app.get('/events/:id/edit', async (req, res) => {
+app.get('/events/:id/edit', ensureAuthenticated, async (req, res) => {
     try {
         const event = await Event.findById(req.params.id);
         if (!event) {
@@ -261,17 +305,17 @@ app.post('/events/:id/edit', async (req, res) => {
     const { event, date, venue, description, contact } = req.body;
     try {
         await Event.findByIdAndUpdate(req.params.id, { event, date, venue, description, contact }, { new: true });
-        res.redirect(`/events`); // Redirect to the updated blog post
+        res.redirect(`/dashboard`); // Redirect to the updated blog post
     } catch (err) {
         console.error('Error updating event data:', err);
         res.status(500).send('Internal Server Error');
     }
 });
 
-app.delete('/events/:id', async (req, res) => {
+app.delete('/events/:id', ensureAuthenticated, async (req, res) => {
     try {
         await Event.findByIdAndDelete(req.params.id);
-        res.redirect('/events'); // Redirect to the blogs list after deletion
+        res.redirect('/dashboard'); // Redirect to the blogs list after deletion
     } catch (err) {
         console.error('Error deleting event:', err);
         res.status(500).send('Internal Server Error');
@@ -288,7 +332,7 @@ app.get('/gallery', async (req, res) => {
     }
 });
 
-app.get('/gallery/add',async(req,res)=>{
+app.get('/gallery/add', ensureAuthenticated, async(req,res)=>{
     res.render('addphotos',{ currentPage: 'none'})
   });
 
@@ -311,7 +355,7 @@ app.get('/gallery/add',async(req,res)=>{
         res.status(500).json({ error: 'Error creating gallery item' });
     }
 });
-app.get('/gallery/:id/edit', async (req, res) => {
+app.get('/gallery/:id/edit', ensureAuthenticated, async (req, res) => {
     try {
         const gallery = await Gallery.findById(req.params.id);
         if (!gallery) {
@@ -377,7 +421,7 @@ app.post('/gallery/:id/edit', upload.single('imageFile'), async (req, res) => {
 });
 
 // Route to handle the deletion
-app.delete('/gallery/:id', async (req, res) => {
+app.delete('/gallery/:id', ensureAuthenticated, async (req, res) => {
     try {
         // Find the gallery item to get the image URL
         const galleryItem = await Gallery.findById(req.params.id);
@@ -418,7 +462,7 @@ app.get('/blogs/:id',async(req,res)=>{
     res.render('blogDescription',{ data,currentPage: 'blog' })
 })
 
-  app.get('/addblogs',async(req,res)=>{
+  app.get('/addblogs', ensureAuthenticated, async(req,res)=>{
     res.render('addblog',{ currentPage: 'blog' })
   });
 
@@ -444,7 +488,7 @@ app.get('/blogs/:id',async(req,res)=>{
   
       await newBlog.save();
   
-      res.redirect('/blogs');
+      res.redirect('/dashboard');
     } catch (err) {
       console.error('Error creating blog:', err);
       res.status(500).json({ error: 'Error creating blog post' });
@@ -452,13 +496,13 @@ app.get('/blogs/:id',async(req,res)=>{
   });
 
 // Route to render the edit form
-app.get('/blogs/:id/edit', async (req, res) => {
+app.get('/blogs/:id/edit', ensureAuthenticated, async (req, res) => {
     try {
         const blog = await Blog.findById(req.params.id);
         if (!blog) {
             return res.status(404).send('Blog not found');
         }
-        res.render('editblog', { blog });
+        res.render('editblog', { blog, currentPage: 'blog' });
     } catch (err) {
         console.error('Error fetching blog for edit:', err);
         res.status(500).send('Internal Server Error');
@@ -511,7 +555,7 @@ app.post('/blogs/:id/edit', upload.single('imageFile'), async (req, res) => {
             return res.status(404).send('Blog post not found');
         }
 
-        res.redirect('/blogs'); // Redirect to the list of blog posts
+        res.redirect('/dashboard'); // Redirect to the list of blog posts
     } catch (err) {
         console.error('Error updating blog:', err);
         res.status(500).send('Internal Server Error');
@@ -520,7 +564,7 @@ app.post('/blogs/:id/edit', upload.single('imageFile'), async (req, res) => {
 
 
 // Route to handle the deletion
-app.delete('/blogs/:id', async (req, res) => {
+app.delete('/blogs/:id', ensureAuthenticated, async (req, res) => {
     try {
         // Find the blog post to get the image URL
         const blogPost = await Blog.findById(req.params.id);
@@ -539,7 +583,7 @@ app.delete('/blogs/:id', async (req, res) => {
         // Delete the blog post from the database
         await Blog.findByIdAndDelete(req.params.id);
         
-        res.redirect('/blogs'); // Redirect to the blog list after deletion
+        res.redirect('/dashboard'); // Redirect to the blog list after deletion
     } catch (err) {
         console.error('Error deleting blog:', err);
         res.status(500).send('Internal Server Error');
@@ -560,7 +604,7 @@ app.get('/notices', async (req, res) => {
     }
 });
 
-app.get('/addnotice',async(req,res)=>{
+app.get('/addnotice', ensureAuthenticated, async(req,res)=>{
     res.render('addnotice',{ currentPage: 'notice' });
 })
 
@@ -584,20 +628,20 @@ app.post('/addnotice', upload.single('imageFile'), async (req, res) => {
 
         await newNotice.save();
 
-        res.redirect('/notices');
+        res.redirect('/dashboard');
     } catch (err) {
         console.error('Error creating blog:', err);
         res.status(500).json({ error: 'Error creating notice ' });
     }
 });
 
-app.get('/notices/edit/:id', async (req, res) => {
+app.get('/notices/edit/:id', ensureAuthenticated, async (req, res) => {
     try {
         const notice = await Notice.findById(req.params.id); // Find the notice by ID
         if (!notice) {
             return res.status(404).send('Notice not found');
         }
-        res.render('editnotice', { notice }); // Render the edit form
+        res.render('editnotice', { notice, currentPage: 'notice' }); // Render the edit form
     } catch (err) {
         console.error('Error fetching notice for edit:', err);
         res.status(500).send('Internal Server Error');
@@ -648,14 +692,14 @@ app.post('/notices/edit/:id', upload.single('imageFile'), async (req, res) => {
             return res.status(404).send('Notice not found');
         }
 
-        res.redirect('/notices'); // Redirect back to the notices list after update
+        res.redirect('/dashboard'); // Redirect back to the notices list after update
     } catch (err) {
         console.error('Error updating notice:', err);
         res.status(500).send('Internal Server Error');
     }
 });
 
-app.delete('/notice/:id', async (req, res) => {
+app.delete('/notice/:id', ensureAuthenticated, async (req, res) => {
     try {
         // Find the notice to get the image URL
         const notice = await Notice.findById(req.params.id);
@@ -674,12 +718,62 @@ app.delete('/notice/:id', async (req, res) => {
         // Delete the notice from the database
         await Notice.findByIdAndDelete(req.params.id);
         
-        res.redirect('/notices'); // Redirect to the notices list after deletion
+        res.redirect('/dashboard'); // Redirect to the notices list after deletion
     } catch (err) {
         console.error('Error deleting notice:', err);
         res.status(500).send('Internal Server Error');
     }
 });
+
+app.get('/login', (req, res) => {
+    res.render('login', { errorMessage: req.flash('error') });
+});
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: true
+  }));
+
+
+  app.get('/logout', (req, res) => {
+    // Destroy the session
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: 'Logout failed', error: err });
+      }
+      res.redirect('/login'); // Redirect to login page
+    });
+  });
+
+
+  app.get('/dashboard',ensureAuthenticated, async (req, res) => {
+    try {
+        // Fetch data from MongoDB collections
+        const latestBlogs = await Blog.find();
+        const latestNotices = await Notice.find();
+        const gallery = await Gallery.find();  // Changed to match EJS variable
+        const upcomingEvents = await Event.find();
+        const hotelsList = await Hotel.find();
+
+        // Render the dashboard with the fetched data
+        res.render('dashboard', {
+            blogs: latestBlogs,
+            notices: latestNotices,
+            gallery: gallery, // Changed to match EJS variable
+            events: upcomingEvents,
+            hotels: hotelsList,
+            currentPage: 'dashboard'
+        });
+    } catch (err) {
+        console.error('Error fetching dashboard data:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+
 
 app.listen(4000, () => {
     console.log(`CONNECTED TO DB AND SERVER START ON ${4000}`);

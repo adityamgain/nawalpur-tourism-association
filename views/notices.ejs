@@ -39,33 +39,27 @@
             </div>
         </div>
 
-
-<section class="notice">
-    <div class="news-updates-section">
-        <div class="news-container">
-            <% noticesdetail.forEach(notice => { %>
-                <div class="news-item">
-                    <img src="<%= notice.imageUrl %>" alt="News Image">
-                    <div class="news-info">
-                        <p><%= notice.title %></p>
-                        <a href="<%= notice.imageUrl %>" download>
-                            <button class="download-btn">
-                                <i class="fas fa-download"></i> Download Image
-                            </button>
-                        </a><br>
-                        <a href="/notices/edit/<%= notice._id %>" class="edit-button">
-                            <button type="submit" class="delete-button">Edit
-                            </button>
-                        </a>
-                        <form action="/notice/<%= notice._id %>?_method=DELETE" method="POST" style="display:inline;">
-                            <button type="submit" class="delete-button">Delete</button>
-                        </form>
-                    </div>
+        <section class="notice">
+            <div class="news-updates-section">
+                <div class="news-container">
+                    <% noticesdetail.forEach(notice => { %>
+                        <div class="news-item">
+                            <img src="<%= notice.imageUrl %>" alt="News Image">
+                            <div class="news-info">
+                                <p><%= notice.title %></p>
+                                <!-- Download button with a file name for downloading the image -->
+                                <a href="<%= notice.imageUrl %>" download="<%= notice.title %>">
+                                    <button class="download-btn">
+                                        <i class="fas fa-download"></i> Download Image
+                                    </button>
+                                </a><br>
+                            </div>
+                        </div>
+                    <% }) %>
                 </div>
-            <% }) %>
-        </div>
-    </div>        
-</section>
+            </div>        
+        </section>
+
 
 
 

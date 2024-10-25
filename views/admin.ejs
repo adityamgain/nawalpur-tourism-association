@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Manage Blogs</h2>
+    <ul>
+        <% blogs.forEach(blog => { %>
+            <li><a href="/blogs/<%= blog._id %>/edit"><%= blog.title %></a></li>
+        <% }) %>
+    </ul>
+
+    <h2>Manage Notices</h2>
+    <ul>
+        <% notices.forEach(notice => { %>
+            <li><a href="/notices/<%= notice._id %>/edit"><%= notice.title %></a></li>
+        <% }) %>
+    </ul>
+
+    <h2>Manage Events</h2>
+    <ul>
+        <% events.forEach(event => { %>
+            <li><a href="/events/<%= event._id %>/edit"><%= event.event %></a></li>
+        <% }) %>
+    </ul>
+
+    <h2>Manage Hotels</h2>
+    <ul>
+        <% hotels.forEach(hotel => { %>
+            <li><a href="/hotel/list/<%= hotel._id %>/edit"><%= hotel.name %></a></li>
+        <% }) %>
+    </ul>
+
+    <h2>Manage Gallery</h2>
+    <ul>
+        <% gallery.forEach(photo => { %>
+            <li><a href="/gallery/<%= photo._id %>/edit">Photo by <%= photo.Photoby %></a></li>
+        <% }) %>
+    </ul>
+
+    <a href="/blogs/add">Add New Blog</a>
+    <a href="/events/add">Add New Event</a>
+    <a href="/hotel/list/add">Add New Hotel</a>
+    <a href="/gallery/add">Add New Gallery Item</a>
+</body>
+</html>
