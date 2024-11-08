@@ -39,7 +39,6 @@ body {
 /* Main container for the notice section */
 .notice {
     padding: 2em;
-    background-color: #f9f9f9;
 }
 
 /* Container for the list of news and updates */
@@ -61,7 +60,7 @@ body {
     display: flex;
     flex-direction: column; /* Stack image and content vertically */
     align-items: center;
-    background-color: #fff;
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1em;

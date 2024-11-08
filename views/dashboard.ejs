@@ -103,7 +103,7 @@
         <section class="section gallery-section">
             <h2 class="collapsible" onclick="toggleSection('gallery-content')">Gallery Section</h2>
             <div class="collapsible-content" id="gallery-content">
-                <button class="add-button" onclick="window.location.href='/gallery/new'">Add Photo</button>
+                <button class="add-button" onclick="window.location.href='/gallery/add'">Add Photo</button>
                 <% if (gallery.length === 0) { %>
                     <p>No photos available.</p>
                 <% } else { %>
@@ -116,7 +116,7 @@
                                 <p class="gallery-tag">Tag: <%= photo.tag %></p>
                                 <div class="gallery-actions">
                                     <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a>
-                                    <form action="/gallery/<%= photo._id %>/delete" method="POST" style="display:inline;">
+                                    <form action="/gallery/<%= photo._id %>?_method=DELETE" method="POST" style="display:inline;">
                                         <button type="submit" class="delete-button">Delete</button>
                                     </form>
                                 </div>

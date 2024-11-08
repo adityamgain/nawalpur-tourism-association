@@ -52,6 +52,7 @@ body {
     opacity: 0; /* Start invisible */
 }
 
+
 /* Define the fade-in and scale-up keyframes */
 @keyframes fadeScaleUp {
     0% {
@@ -131,6 +132,7 @@ body {
     height: 280px;
     object-fit: cover;
     border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 /* Navigation Buttons */

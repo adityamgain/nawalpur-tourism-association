@@ -33,6 +33,7 @@ body {
     z-index: -1;
 }
 
+
 .quotesecond h4{
     font-size: 5rem; /* This makes the font size scale based on the viewport width */
     justify-content: center;

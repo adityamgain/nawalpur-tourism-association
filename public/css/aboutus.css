@@ -71,11 +71,7 @@ body {
     margin-bottom: 0;
   }
   
-  .about-us p::first-letter {
-    font-size: 1.5rem;
-    color: #004d40;
-    font-weight: bold;
-  }
+
 
   .supported-by {
     text-align: center;

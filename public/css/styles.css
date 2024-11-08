@@ -147,8 +147,8 @@
 }
 
 .navbar-link:hover {
-    text-decoration: underline;
-    color: beige;
+    text-decoration:none;
+    color: #ff6600; 
 }
 
 .navbar.active .navbar-link {
@@ -507,11 +507,12 @@
 /* cards */
 
 .headingfirst {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     color: white;
     background-color: #1d3020;
-    font-family: "Sacramento", cursive;
-    font-weight: 600;
+    font-family: "Quando", serif;
+    font-weight: 400;
+    text-align: center;
     padding-left: 80px;
 }
 
@@ -744,18 +745,16 @@
 }
 
 .headingsecond, .headingthird {
-    font-size: 2.5rem; /* Reduced for better responsiveness */
+    font-size: 2.8rem; /* Reduced for better responsiveness */
     background-color: white;
     color: black;
-    font-family: "Sacramento", cursive;
-    font-weight: 600;
+    font-family: "Quando", serif;
+    font-weight: 400;
     padding: 1rem;
+    text-align: center;
     margin: 0 auto; /* Center the headings */
 }
 
-.headingsecond{
-    padding-left: 80px;
-}
 
 
 .row {
@@ -855,7 +854,7 @@
 }
 
 @media (max-width: 768px) {
-    .headingsecond, .headingthird {
+    .headingfirst, .headingsecond, .headingthird {
         font-size: 2rem;
         padding-left: 0;
     }
@@ -875,8 +874,8 @@
 }
 
 @media (max-width: 576px) {
-    .headingsecond, .headingthird {
-        font-size: 1.8rem;
+    .headingfirst, .headingsecond, .headingthird {
+        font-size: 1.5rem;
     }
 
     .card-places {
@@ -1271,10 +1270,10 @@
 }
 
 .heading {
-    font-size: 2.5rem; /* Reduced font size for better readability on smaller screens */
-    font-family: "Sacramento", cursive;
+    font-size: 2.8rem; /* Reduced font size for better readability on smaller screens */
+    font-family: "Quando", serif;
+    font-weight: 400;
     margin-bottom: 1.5rem;
-    font-weight: 600;
     text-align: center; /* Center-align for a more responsive look */
 }
 
@@ -1349,46 +1348,42 @@
 
 @media (max-width: 992px) {
     .heading{
-        font-size: 4rem;
+        font-size: 2.5rem;
     }
     .headingfirst{
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     .container h2{
-        font-size: 3rem;
-        padding-left: 60px;
+        font-size: 2rem;
     }
     .headingsecond, .headingthird{
-        font-size: 3rem;
-        padding-left: 60px;
+        font-size: 2.5rem;
     }
 }
 
 /* For small screens (phones) */
 @media (max-width: 768px) {
     .heading{
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .headingfirst{
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .headingsecond, .headingthird{
-        font-size: 3rem;
-        padding-left: 30px;
+        font-size: 2rem;
     }
 }
 
 /* For extra small screens (very small phones) */
 @media (max-width: 480px) {
     .heading{
-        font-size: 3rem;
+        font-size: 1.8rem;
     }
     .headingfirst{
-        font-size: 3rem;
+        font-size: 1.8rem;
     }
     .headingsecond, .headingthird{
-        font-size: 3rem;
-        padding-left: 30px;
+        font-size: 1.8rem;
     }
 }
 
@@ -1449,15 +1444,13 @@
 
 
 /* events section */
-
 .upcoming-events{
-    width:98%;
+    width:100%;
+    margin: 10px;
 }
 
 .eventupcoming-events {
-    padding: 50px 0;
-    width: 85%;
-    margin: 0 auto; /* Center the section */
+    width: 100%;
 }
 
 .events-container {
@@ -1473,17 +1466,14 @@ h1 {
   }
 
   .eventcard-container {
-    margin: 10px;
     display: grid;
     grid-template-areas: 
       'photo info';
     grid-template-columns: 140px 1fr;
     min-width: 35%;
     background-color: #ffffff;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     line-height: 1.75em;
   }
-
   
   .eventphoto-container {
     font-size: 1.5em;
@@ -1577,6 +1567,10 @@ h1 {
 /* FontAwesome icon setup */
 .eventcontact-link i {
     margin-right: 5px;
+}
+
+.upcoming-events a{
+    margin-right: 2%;
 }
 
 /* Responsive Design */
