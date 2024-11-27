@@ -5,7 +5,7 @@ const NepaliDate = require('nepali-date-converter');
 
 exports.getAllEvents = async (req, res) => {
     try {
-        const eventlist = await Event.find();
+        const eventlist = await Event.find().sort({ date: 1 });
 
         // Convert the dates of events into Nepali and format them
         const eventlistWithNepaliDates = eventlist.map(event => {
@@ -22,8 +22,8 @@ exports.getAllEvents = async (req, res) => {
 
             return {
                 ...event._doc,
-                englishDate: englishFormattedDate, // e.g., "12 Jul 2024"
-                nepaliDate: nepaliFormattedDate // e.g., "28 Asar 2081"
+                englishDate: englishFormattedDate, // eg, "12 Jul 2024"
+                nepaliDate: nepaliFormattedDate // eg, "28 Asar 2081"
             };
         });
 

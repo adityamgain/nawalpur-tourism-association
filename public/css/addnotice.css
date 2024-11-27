@@ -26,7 +26,7 @@ body {
 .addnotice-image {
     position: absolute;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 70%, rgb(0, 0, 0) 100%), 
-    url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/481355857.jpg?k=e6e9868a2316ee1ba49a75fde7fa431987a3f22ac37a83e4d9f74947b65d20f0&o=&hp=1');
+    url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1732029656/IMG_1846_kehkec.jpg');
     top: 0;
     left: 0;
     width: 100%;

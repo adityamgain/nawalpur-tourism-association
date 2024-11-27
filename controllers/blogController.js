@@ -1,5 +1,4 @@
 const cloudinary = require('cloudinary').v2;
-
 const Blog = require('../models/blog');
 
 exports.getAllBlogs = async (req, res) => {

@@ -1,5 +1,6 @@
 const Notice = require('../models/notice');
 const cloudinary = require('cloudinary').v2;
+const axios = require('axios')
 
 
 exports.getAllNotices = async (req, res) => {
@@ -22,6 +23,31 @@ exports.getNoticeById = async (req, res) => {
     } catch (error) {
         console.error('Error fetching notice:', error);
         res.status(500).json({ error: 'Error fetching notice' });
+    }
+};
+
+exports.downloadNoticeImage = async (req, res) => {
+    try {
+        const notice = await Notice.findById(req.params.id);
+        if (!notice) {
+            return res.status(404).send('Notice not found');
+        }
+
+        const imageUrl = notice.imageUrl;
+        const filename = `${notice.title.replace(/\s+/g, '_')}.jpg`; // Generate a filename based on the title
+
+        // Fetch the image from Cloudinary
+        const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+
+        // Set headers to force download
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+        res.setHeader('Content-Type', 'image/jpeg');
+
+        // Send the image data
+        res.send(response.data);
+    } catch (err) {
+        console.error('Error downloading image:', err);
+        res.status(500).send('Internal Server Error');
     }
 };
 

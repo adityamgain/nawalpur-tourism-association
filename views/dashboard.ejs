@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/dashboard.css">
     <title>Nawalpur Tourism Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dga2mpvuf/image/upload/v1732512151/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb_ysn4ly.png">
+
 </head>
 <body>
     <div class="container">
@@ -115,7 +117,7 @@
                                 <p class="gallery-photoby">Photo by: <%= photo.Photoby %></p>
                                 <p class="gallery-tag">Tag: <%= photo.tag %></p>
                                 <div class="gallery-actions">
-                                    <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a>
+                                    <a href="/gallery/<%= photo._id %>/edit" class="edit-button">Edit</a><p>
                                     <form action="/gallery/<%= photo._id %>?_method=DELETE" method="POST" style="display:inline;">
                                         <button type="submit" class="delete-button">Delete</button>
                                     </form>
@@ -129,7 +131,7 @@
 
         <!-- Hotel List Section -->
         <section class="section hotel-section">
-            <h2 class="collapsible" onclick="toggleSection('hotel-content')">Hotel List Section</h2>
+            <h2 class="collapsible" onclick="toggleSection('hotel-content')">HotelList Section</h2>
             <div class="collapsible-content" id="hotel-content">
                 <button class="add-button" onclick="window.location.href='/hotel/list/add'">Add Hotel</button>
                 <% if (hotels.length === 0) { %>

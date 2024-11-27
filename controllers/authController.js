@@ -7,7 +7,9 @@ const Hotel = require('../models/hotel');
 
 // Render login page
 exports.getLoginPage = (req, res) => {
-    res.render('login', { errorMessage: req.flash('error') });
+    res.render('login', {
+        errorMessage: req.flash('error'), // Display any error messages stored in flash
+    });
 };
 
 // Handle login request
@@ -19,15 +21,28 @@ exports.postLogin = (req, res, next) => {
     })(req, res, next);
 };
 
-// Handle logout
+// Handle logout request
 exports.logout = (req, res) => {
-    req.session.destroy(err => {
+    req.logout(err => { // Call the Passport logout function
         if (err) {
-            return res.status(500).json({ message: 'Logout failed', error: err });
+            console.error('Logout error:', err);
+            return res.status(500).json({
+                message: 'Logout failed',
+                error: err,
+            });
         }
-        res.redirect('/login');
+        req.session.destroy(destroyErr => { // Destroy session explicitly
+            if (destroyErr) {
+                console.error('Session destruction error:', destroyErr);
+                return res.status(500).json({
+                    message: 'Session destruction failed',
+                    error: destroyErr,
+                });
+            }
+            res.redirect('/login'); // Redirect to login page
+        });
     });
-};
+}
 
 // Render dashboard with data
 exports.getDashboard = async (req, res) => {

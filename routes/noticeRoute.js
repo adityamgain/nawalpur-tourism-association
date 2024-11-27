@@ -10,6 +10,9 @@ router.get('/notices', noticeController.getAllNotices);
 // Route to fetch a specific notice by ID
 router.get('/notices/:id', noticeController.getNoticeById);
 
+router.get('/notices/download/:id', noticeController.downloadNoticeImage);
+// Route to download the notice
+
 // Route to display the form to add a new notice
 router.get('/addnotice', ensureAuthenticated, noticeController.getAddNoticeForm);
 

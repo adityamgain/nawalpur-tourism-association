@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     font-family: 'Arial', sans-serif;
-    background-image: url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1729835152/Beige_Minimalist_Floral_Leaves_Pattern_Mousepad.png');
+    background-image: url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732519291/DJI_0155_o524w1.jpg');
     background-size: cover; /* Ensures the image covers the entire screen */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-position: center; /* Centers the background image */
@@ -65,4 +65,47 @@ body {
 .logo {
     max-width: 80px; /* Set a maximum width for the logo */
     height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  body {
+      padding: 10px;
+  }
+
+  .login-container {
+      width: 90%; /* Take up more width on smaller screens */
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 1.2em; /* Reduce font size for smaller screens */
+  }
+
+  button {
+      font-size: 0.9em; /* Slightly smaller button text */
+  }
+
+  .logo {
+      max-width: 60px; /* Smaller logo for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+      padding: 10px; /* Less padding for very small screens */
+      border-radius: 4px;
+  }
+
+  h1 {
+      font-size: 1em; /* Even smaller font size */
+  }
+
+  button {
+      font-size: 0.8em; /* Adjust button font size */
+  }
+
+  .logo {
+      max-width: 50px; /* Further reduce logo size */
+  }
 }

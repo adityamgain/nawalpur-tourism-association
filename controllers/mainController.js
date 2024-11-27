@@ -6,13 +6,11 @@ const Event = require('../models/event');
 
 module.exports.renderHomePage = async (req, res) => {
   try {
-    // Fetch the latest 3 blogs, 6 notices, 8 random gallery photos, and 3 upcoming events
     const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(3); // Get latest 3 blogs
     const latestNotices = await Notice.find().sort({ createdAt: -1 }).limit(6); // Get latest 6 notices
     const galleryphotos = await Gallery.aggregate([{ $sample: { size: 8 } }]); // Get 8 random photos
     const upcomingevents = await Event.find().sort({ date: 1 }).limit(3); // Get 3 upcoming events sorted by date
 
-    // Render the home page and pass the fetched data to the template
     res.render('home', { 
       blogs: latestBlogs, 
       notices: latestNotices, 

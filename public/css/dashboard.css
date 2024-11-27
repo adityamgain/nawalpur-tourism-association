@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1729835152/Beige_Minimalist_Floral_Leaves_Pattern_Mousepad.png');
+    background-image: url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732519291/DJI_0155_o524w1.jpg');
     background-size: cover; /* Ensures the image covers the entire screen */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-position: center; /* Centers the background image */
@@ -53,20 +53,21 @@ h2 {
 .collapsible {
     cursor: pointer; /* Show pointer cursor on hover */
     padding: 10px;
-    background-color: rgb(190, 161, 107); /* Background color for collapsible headers */
+    background: linear-gradient(to right, transparent 0%, rgba(30, 49, 30, 0.747) 20%, rgba(30, 49, 30, 0.747) 80%, transparent 100%);
     color: white; /* Text color for collapsible headers */
     border-radius: 5px; /* Rounded corners */
     margin-bottom: 5px; /* Space below the header */
-    transition: background-color 0.3s; /* Smooth transition for hover effects */
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
 }
 
+
 .collapsible:hover {
-    background-color: rgb(160, 131, 79); /* Darker shade on hover */
+    background-color: rgb(57, 78, 40); /* Darker shade on hover */
 }
 
 .collapsible-content {
     padding: 10px; /* Padding for content */
-    border: 2px solid rgb(221, 175, 88); /* Border color for content area */
+    border: 2px solid rgb(6, 92, 39); /* Border color for content area */
     border-top: none;
     border-radius: 2px; /* Rounded corners */
     background-color: #f8f9fa; /* Light background for content area */
@@ -132,8 +133,9 @@ h2 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
     font-size: 0.9em;
-    display: flex;
+    display: grid;
     align-items: center;
     transition: background-color 0.3s; /* Smooth transition for hover effects */
 }
@@ -186,8 +188,10 @@ h2 {
 
 .gallery-image {
     width: 100%; /* Full width of the item */
-    height: auto; /* Maintain aspect ratio */
+    height: 200px; /* Maintain aspect ratio */
     border-radius: 5px; /* Rounded corners for images */
+    object-fit: cover;
+
 }
 
 .gallery-title {

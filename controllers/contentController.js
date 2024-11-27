@@ -1,51 +1,46 @@
-const Content = require('../models/content'); // Ensure your Content model is imported
+const mongoose = require('mongoose'); 
+const Content = require('../models/content'); 
 
-exports.getAdventureContent = async (req, res) => {
-    const tagCondition = 'activity';
+// Controller to handle fetching content by tag
+exports.getContentByTag = async (req, res) => {
+    const tag = req.params.tag; 
+    const tagMap = {
+        adventure: 'activity',
+        nature: 'nature',
+        culture: 'culture',
+        wellness: 'wellness',
+    };
+
+    const templateMap = {
+        adventure: 'adventure',
+        nature: 'nature',
+        culture: 'culture',
+        wellness: 'wellbeing',
+    };
+
+    const tagCondition = tagMap[tag]; 
+    const template = templateMap[tag]; 
+
+    if (!tagCondition || !template) {
+        return res.status(404).send('Page not found'); 
+    }
+
     try {
         const contentdetail = await Content.find({ tag: tagCondition });
-        res.render('adventure', { contentdetail, currentPage: 'things-to-do' });
+        res.render(template, { contentdetail, currentPage: 'things-to-do' });
     } catch (error) {
-        console.error('Error fetching adventure content:', error);
+        console.error(`Error fetching content for tag "${tag}":`, error);
         res.status(500).send('Internal Server Error');
     }
 };
 
-exports.getNatureContent = async (req, res) => {
-    const tagCondition = 'nature';
-    try {
-        const contentdetail = await Content.find({ tag: tagCondition });
-        res.render('nature', { contentdetail, currentPage: 'things-to-do' });
-    } catch (error) {
-        console.error('Error fetching nature content:', error);
-        res.status(500).send('Internal Server Error');
-    }
-};
-
-exports.getCultureContent = async (req, res) => {
-    const tagCondition = 'culture';
-    try {
-        const contentdetail = await Content.find({ tag: tagCondition });
-        res.render('culture', { contentdetail, currentPage: 'things-to-do' });
-    } catch (error) {
-        console.error('Error fetching culture content:', error);
-        res.status(500).send('Internal Server Error');
-    }
-};
-
-exports.getWellnessContent = async (req, res) => {
-    const tagCondition = 'wellness';
-    try {
-        const contentdetail = await Content.find({ tag: tagCondition });
-        res.render('wellbeing', { contentdetail, currentPage: 'things-to-do' });
-    } catch (error) {
-        console.error('Error fetching wellness content:', error);
-        res.status(500).send('Internal Server Error');
-    }
-};
-
+// Controller to handle fetching content by ID
 exports.getContentById = async (req, res) => {
     const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send('Invalid content ID');
+    }
     try {
         const data = await Content.findById(id);
         if (!data) {

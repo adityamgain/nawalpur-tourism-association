@@ -6,7 +6,6 @@ exports.getAllHotels = async (req, res) => {
 
 exports.getHotelList = async (req, res) => {
     try {
-        // Fetch all blog posts from the database
         const hotelslist = await Hotel.find().sort({ name: 1 });
         res.render('hotellist',{ hotelslist,currentPage: 'hotel' });
     } catch (err) {
@@ -54,7 +53,7 @@ exports.updateHotel = async (req, res) => {
     const { name, website, location } = req.body;
     try {
         await Hotel.findByIdAndUpdate(req.params.id, { name, website, location }, { new: true });
-        res.redirect('/dashboard'); // Redirect to the updated blog post
+        res.redirect('/dashboard'); 
     } catch (err) {
         console.error('Error updating blog:', err);
         res.status(500).send('Internal Server Error');
@@ -63,7 +62,7 @@ exports.updateHotel = async (req, res) => {
 exports.deleteHotel = async (req, res) => {
     try {
         await Hotel.findByIdAndDelete(req.params.id);
-        res.redirect('/dashboard'); // Redirect to the blogs list after deletion
+        res.redirect('/dashboard'); 
     } catch (err) {
         console.error('Error deleting blog:', err);
         res.status(500).send('Internal Server Error');

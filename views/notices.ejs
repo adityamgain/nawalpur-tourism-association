@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nawalpur Tourism</title>
-    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgdbgblvb/image/upload/v1726634760/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb.png">
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dga2mpvuf/image/upload/v1732512151/Image_18-09-2024_at_10.29_am-removebg-preview_sppzzb_ysn4ly.png">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/addblog.css">
@@ -39,26 +39,26 @@
             </div>
         </div>
 
-        <section class="notice">
-            <div class="news-updates-section">
-                <div class="news-container">
-                    <% noticesdetail.forEach(notice => { %>
-                        <div class="news-item">
-                            <img src="<%= notice.imageUrl %>" alt="News Image">
-                            <div class="news-info">
-                                <p><%= notice.title %></p>
-                                <!-- Download button with a file name for downloading the image -->
-                                <a href="<%= notice.imageUrl %>" download="<%= notice.title %>">
-                                    <button class="download-btn">
-                                        <i class="fas fa-download"></i> Download Image
-                                    </button>
-                                </a><br>
-                            </div>
-                        </div>
-                    <% }) %>
+<section class="notice">
+    <div class="news-updates-section">
+        <div class="news-container">
+            <% noticesdetail.forEach(notice => { %>
+                <div class="news-item">
+                    <img src="<%= notice.imageUrl %>" alt="News Image">
+                    <div class="news-info">
+                        <p><%= notice.title %></p>
+                        <!-- Updated Download Button -->
+                        <a href="/notices/download/<%= notice._id %>">
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download Image
+                            </button>
+                        </a><br>
+                    </div>
                 </div>
-            </div>        
-        </section>
+            <% }) %>
+        </div>
+    </div>
+</section>
 
 
     <!-- Include Footer Partial -->

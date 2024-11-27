@@ -306,7 +306,7 @@
     0% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424939/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_wh8m17.jpg');
         -webkit-transform: scale(1);
         transform: scale(1); /* No zoom */
     }
@@ -317,7 +317,7 @@
     33% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1727967602/IMG_8907_yyulgd.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732428022/DJI_0212_eunyrj.jpg');
         -webkit-transform: scale(1); /* No zoom */
         transform: scale(1);
     }
@@ -328,7 +328,7 @@
     66% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631987/WhatsApp_Image_2024-09-18_at_9.40.27_AM_j9zoud.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424940/WhatsApp_Image_2024-09-18_at_9.40.27_AM_c2mjuf.jpg');
         -webkit-transform: scale(1); /* No zoom */
         transform: scale(1);
     }
@@ -339,7 +339,7 @@
     100% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424939/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_wh8m17.jpg');
         -webkit-transform: scale(1); /* Reset zoom */
         transform: scale(1);
     }
@@ -349,7 +349,7 @@
     0% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424939/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_wh8m17.jpg');
         transform: scale(1); /* No zoom */
     }
     20% {
@@ -358,7 +358,7 @@
     33% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1727967602/IMG_8907_yyulgd.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732428022/DJI_0212_eunyrj.jpg');
         transform: scale(1); /* No zoom */
     }
     53% {
@@ -367,7 +367,7 @@
     66% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726631987/WhatsApp_Image_2024-09-18_at_9.40.27_AM_j9zoud.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424940/WhatsApp_Image_2024-09-18_at_9.40.27_AM_c2mjuf.jpg');
         transform: scale(1); /* No zoom */
     }
     86% {
@@ -376,24 +376,68 @@
     100% {
         background-image: 
             linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg');
+            url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424939/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_wh8m17.jpg');
         transform: scale(1); /* Reset zoom */
     }
 }
 
-/* Disable animation on smaller screens (mobile phones) */
 @media (max-width: 767px) {
     .hero-image {
-        -webkit-animation: none; /* Disable animation */
-        animation: none; /* Disable animation */
-        background-image: 
-            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0) 50%, #1d3020 100%), 
-            url('https://res.cloudinary.com/dgdbgblvb/image/upload/v1726795954/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_shgyh8.jpg'); /* Static image */
+        /* Enable animation */
+        -webkit-animation: changeBackgroundMobile 20s ease-in-out infinite; /* Shorter duration for mobile */
+        animation: changeBackgroundMobile 20s ease-in-out infinite;
+
+        /* Adjust background size and position for smaller screens */
         background-size: cover;
         background-position: center;
     }
-}
 
+    /* Keyframes for mobile background animation */
+    @-webkit-keyframes changeBackgroundMobile {
+        0% {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(131, 131, 131, 0.205) 50%, #1d3020 100%), 
+                url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424939/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_wh8m17.jpg');
+            -webkit-transform: scale(1); /* No zoom */
+            transform: scale(1);
+        }
+        50% {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(131, 131, 131, 0.233) 50%, #1d3020 100%), 
+                url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732428022/DJI_0212_eunyrj.jpg');
+            -webkit-transform: scale(1.05); /* Slight zoom in */
+            transform: scale(1.05);
+        }
+        100% {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(131, 131, 131, 0.13) 50%, #1d3020 100%), 
+                url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424940/WhatsApp_Image_2024-09-18_at_9.40.27_AM_c2mjuf.jpg');
+            -webkit-transform: scale(1); /* Reset zoom */
+            transform: scale(1);
+        }
+    }
+
+    @keyframes changeBackgroundMobile {
+        0% {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(131, 131, 131, 0.096) 50%, #1d3020 100%), 
+                url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424939/Snapinsta.app_404010624_281267201033195_4797310245388320963_n_1080_wh8m17.jpg');
+            transform: scale(1); /* No zoom */
+        }
+        50% {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(131, 131, 131, 0.192) 50%, #1d3020 100%), 
+                url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732428022/DJI_0212_eunyrj.jpg');
+            transform: scale(1.05); /* Slight zoom in */
+        }
+        100% {
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(131, 131, 131, 0.151) 50%, #1d3020 100%), 
+                url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732424940/WhatsApp_Image_2024-09-18_at_9.40.27_AM_c2mjuf.jpg');
+            transform: scale(1); /* Reset zoom */
+        }
+    }
+}
   
 .hero-content {
     position:inherit;
@@ -401,11 +445,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: rgba(72, 122, 72, 0.815);
+    text-transform: capitalize;
+
+    color: rgba(119, 155, 106, 0.918);
 }
   
 .hero-content h1 {
-    font-family: "Permanent Marker", cursive;
+    font-family: "Chicle", serif;
     font-weight: 400;
     font-style: normal;
 }
@@ -415,7 +461,7 @@
     justify-content: center;
     margin-top:14%;
     text-align: center;
-    color: #fff;
+    color: rgb(219, 224, 216);
     font-family: "Sacramento", cursive;
 }
 
@@ -424,13 +470,13 @@
     background-size: cover;
     background-position: center;
     padding: 0 0.2rem;
-    font-size: 8rem; /* Initial font size */
+    font-size: 10rem; /* Initial font size */
     transition: font-size 0.8s ease-in; /* Smooth transition */
     opacity: 1; /* Initial opacity */
 }
 
 .hero-content-title.larger {
-    font-size: 12rem; /* Font size when scrolled down */
+    font-size: 13.5rem; /* Font size when scrolled down */
     opacity: 1; /* Maintain opacity */
 }
 
@@ -475,8 +521,9 @@
     }
 
     .quote h4 {
+        line-height: 80%;
         font-size: 4rem; 
-        margin-top: 40%;
+        margin-top: 64%;
     }
 }
 
@@ -505,7 +552,6 @@
 }
 
 /* cards */
-
 .headingfirst {
     font-size: 2.8rem;
     color: white;
@@ -586,13 +632,15 @@
       transform 200ms linear;
   }
   
-  .card:hover .card__background{
+
+  .card:hover .card__background {
     transform: scale(1.05) translateZ(0);
-  }
-  
-  .card-grid:hover > .card:not(:hover) .card__background{
-    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
-  }
+}
+
+.card-grid:hover > .card:not(:hover) .card__background {
+    filter: brightness(0.8) saturate(0.8) contrast(1.2) blur(5px); /* Reduced blur */
+}
+
   
   .card__content{
     left: 0;
@@ -688,7 +736,7 @@
 @media (max-width: 768px) {
     .staff-card {
         width: 95%; /* Adjust width for tablets */
-        font-size: 0.9rem; /* Reduce font size for tablets */
+        font-size: 1.2rem; /* Reduce font size for tablets */
     }
 
     .staff-picture {
@@ -701,7 +749,7 @@
     }
 
     .info-title {
-        font-size: 1.3rem; /* Slightly smaller title on tablets */
+        font-size: 1.5rem; /* Slightly smaller title on tablets */
     }
 }
 
@@ -709,7 +757,7 @@
 @media (max-width: 480px) {
     .staff-card {
         width: 100%; /* Full width for mobile */
-        font-size: 0.8rem; /* Smaller font for mobile */
+        font-size: 1rem; /* Smaller font for mobile */
     }
 
     .staff-picture {
@@ -723,7 +771,7 @@
     }
 
     .info-title {
-        font-size: 1.1rem; /* Small title for mobile */
+        font-size: 1.4rem; /* Small title for mobile */
     }
 }
 
@@ -737,14 +785,19 @@
     background-attachment: fixed;
 }
 
-.placestogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* Ensures alignment on smaller screens */
+.headingsecond{
+    font-size: 2.8rem; /* Reduced for better responsiveness */
+    color: black;
+    background: rgba(244, 248, 238, 0.63); 
+
+    font-family: "Quando", serif;
+    font-weight: 400;
+    padding: 1rem;
+    text-align: center;
+    margin: 0 auto; /* Center the headings */
 }
 
-.headingsecond, .headingthird {
+.headingthird {
     font-size: 2.8rem; /* Reduced for better responsiveness */
     background-color: white;
     color: black;
@@ -754,8 +807,6 @@
     text-align: center;
     margin: 0 auto; /* Center the headings */
 }
-
-
 
 .row {
     position: relative; 
@@ -786,9 +837,18 @@
 }
 
 .right-half iframe {
-    width: 90%; /* Responsive width */
-    height: 70%; /* Adjusted height for desktop */
-    border: none;
+    width: 90%;
+    height: 70%;
+    border: none; /* No default border */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Add soft shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+}
+
+/* Hover effect */
+.right-half iframe:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
 /* Card styles */
@@ -830,10 +890,10 @@
 
 .card-text {
     font-family: Arial, sans-serif;
-
+    text-align: center;
     font-size: 1rem;
     text-decoration: none;
-    font-weight:550;
+    font-weight:580;
     color: #333;
 }
 
@@ -1057,12 +1117,15 @@
 }
 
 @media (max-width: 768px) {
+    .cnp {
+        height: 72%;
+    }
+
     .content {
         width: 100%;
         margin-left: 0;
         padding: 30px;
         position: static; 
-
     }
 
     .image {
@@ -1087,9 +1150,9 @@
 }
 
 /* Adjust for screens 480px and smaller */
-@media (max-width: 480px) {
+@media (max-width: 420px) {
     .cnp {
-        height: 100%;
+        height: 88%;
     }
 
     .content {
@@ -1178,7 +1241,7 @@
 
   @media (max-width: 1080px) {
     .detail{
-        height: 85%;
+        height: 70%;
     }
     .content-second {
         width: 72%;
@@ -1201,7 +1264,7 @@
 
   @media (max-width: 768px) {
     .detail{
-        height: 78%;
+        height: 82%;
     }
 
     .content-second {
@@ -1231,9 +1294,9 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 420px) {
     .detail{
-        height: 88%;
+        height: 86%;
     }
     .content-second {
         padding: 20px;
@@ -1446,7 +1509,6 @@
 /* events section */
 .upcoming-events{
     width:100%;
-    margin: 10px;
 }
 
 .eventupcoming-events {
@@ -1455,10 +1517,15 @@
 
 .events-container {
     display: flex;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Enable snap scrolling */
     gap: 10px; /* Space between cards */
+    align-items: stretch; /* Stretch all cards to equal height */
+    width: 100%;
+    
+    overflow-x: auto; /* Allow horizontal scrolling for overflow */
 }
+
+
+
 
 h1 {
     font-weight: 400;
@@ -1474,39 +1541,42 @@ h1 {
     background-color: #ffffff;
     line-height: 1.75em;
   }
-  
+
+
+
   .eventphoto-container {
     font-size: 1.5em;
     background-color: #1e5003;
     color: white;
     padding: 20px;
     text-align: center;
-    align-items: center;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    flex-shrink: 0; /* Ensure the photo doesn't shrink */
+}
 
-  .eventinfo-container {
+.eventinfo-container {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* Spread content evenly */
     background-color: rgb(245, 244, 239);
+    flex-grow: 1; /* Allow this container to grow and fill space */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
+
 
 .eventnepalidate{
     font-size: 1.2rem;
     color:rgb(230, 231, 229);
 }
 
-
 .event-remaining-days .days-left {
     font-size: 1.5rem;
     font-weight: 550;
     color: #ff6600;
 }
-
 
 /* Event name */
 .events-name {
@@ -1545,13 +1615,16 @@ h1 {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    /* Add fallback for unsupported browsers */
+    max-height: calc(1.6em * 3); /* 3 lines */
 }
 
 /* Event contact with icon */
 .eventcontact-link {
     display: inline-block;
     padding: 10px;
-    background-color: #3c552e;
+    background-color: #256941;
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -1571,7 +1644,11 @@ h1 {
 
 .upcoming-events a{
     margin-right: 2%;
+    margin-bottom: 2%;
 }
+
+
+
 
 /* Responsive Design */
 /* For smaller tablets (max-width: 768px) */
@@ -1584,11 +1661,12 @@ h1 {
 
     .eventphoto-container {
         width: 100%; /* Adjust the photo container to full width */
-        height: 120px; /* Adjust height for smaller screens */
+        height: 110px; /* Adjust height for smaller screens */
     }
 
     .eventinfo-container {
         padding: 15px;
+        height: 200px;
     }
 
 }
@@ -1606,8 +1684,8 @@ h1 {
         height: 80px; /* Reduce height for smaller screens */
     }
 
-    .eventinfo-container {
-        padding: 10px;
+    .eventphoto-container {
+        height: 150px; /* Adjust for smaller screens */
     }
 
     .events-name {
@@ -1626,3 +1704,71 @@ h1 {
     }
 }
 
+.fact-container-rhino {
+    background-image: 
+        linear-gradient(to top, rgba(0, 0, 0, 0.486), rgba(0, 0, 0, 0)),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0)),
+        url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732450080/460981091_2417063458498535_6788533497513088908_n_eishpz.jpg');
+    height: 70vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+}
+
+.fact-container-tiger {
+    background-image: 
+    linear-gradient(to top, rgba(0, 0, 0, 0.486), rgba(0, 0, 0, 0)),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0)),
+    url('https://res.cloudinary.com/dga2mpvuf/image/upload/v1732427635/1_4_abcheh.jpg');
+    height: 75vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+}
+
+.text-overlay {
+    color: rgba(240, 224, 195, 0.918);
+    font-family: "Bangers", system-ui;
+    font-size: 7.6em; /* Adjust size as needed */
+    font-weight: bold;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+@media (max-width: 768px) {
+    .fact-container {
+        height: 60vh; /* Adjust height for smaller screens */
+        padding-bottom: 15px; /* Adjust padding as needed */
+    }
+
+    .text-overlay {
+        font-size: 5em; /* Slightly smaller font size */
+        padding: 8px 16px; /* Adjust padding */
+    }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+    .fact-container {
+        height: 50vh; /* Smaller height for mobile */
+        padding-bottom: 10px;
+    }
+
+    .text-overlay {
+        font-size: 3em; /* Further reduce font size */
+        padding: 6px 12px;
+    }
+}
